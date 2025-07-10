@@ -1,0 +1,902 @@
+{
+	"info": {
+		"_postman_id": "f660789f-fb8f-43fc-ab44-adb7b4b21497",
+		"name": "Boiler Plate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37513976",
+		"_collection_link": "https://rentibles.postman.co/workspace/Team-Workspace~15fc2316-a529-4015-8c14-4ec989fca620/collection/37513976-f660789f-fb8f-43fc-ab44-adb7b4b21497?action=share&source=collection_link&creator=37513976"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Checl Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "devicemodel",
+								"value": "IPhone 11 Pro",
+								"type": "text"
+							},
+							{
+								"key": "deviceuniqueid",
+								"value": "UUID_IPhone11Pro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"TONY@YOPMAIL.COM\",\r\n    \"role\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/check",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email Sign Up",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"USER_TOKEN\", pm.response.json().data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "devicemodel",
+								"value": "IPhone 11 Pro",
+								"type": "text"
+							},
+							{
+								"key": "deviceuniqueid",
+								"value": "UUID_IPhone11Pro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Tony Stark",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "TONY@YOPMAIL.COM",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Test@123",
+									"type": "text"
+								},
+								{
+									"key": "idToken",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhkMjUwZDIyYTkzODVmYzQ4NDJhYTU2YWJhZjUzZmU5NDcxNmVjNTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdGlwLWFwcC1lNzM4YyIsImF1ZCI6InRpcC1hcHAtZTczOGMiLCJhdXRoX3RpbWUiOjE3MzkxOTY4ODgsInVzZXJfaWQiOiIwRjlGdDRqbDh3V2ZrQkNpaVp5c0JOYXN3M1YyIiwic3ViIjoiMEY5RnQ0amw4d1dma0JDaWlaeXNCTmFzdzNWMiIsImlhdCI6MTczOTE5Njg4OCwiZXhwIjoxNzM5MjAwNDg4LCJlbWFpbCI6ImhheWF0QHlvcG1haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImhheWF0QHlvcG1haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.JmjeSZATaYkdLfSvXc68XnkbXlUNz_abgwfJxiflX06XVal8OIHhh2fDYoIh3OAWA9PsQYpOsyxR4cUBuIxTtvQKsX6CvtD4c_y7mU0qAy25JT4CRHIjVDiAw9JMhiffjbGebo_i6ZkOmGwoOZZDTGj4Eh1ff3cXFV5QRn_I5HRGsDHbopeP8G-GCcJ24Y8QFwEmqK0vwy_CSzFazSNUaGtrMh1vW0p-nUZdsLNb6BpwP-fHkuAE8BUAOdUrdO09eo884H5YINeu2vvoqetIWMqgqHRLnLI0FU23uzFrQ2LKo6r6upJSzGp6OXvlhL3JNlmHwVwQs9Vc1zah2QC5Yw",
+									"type": "text"
+								},
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/C:/Users/Lenovo/Downloads/JasonArmstrong_087_(2)(1).jpg"
+								},
+								{
+									"key": "role",
+									"value": "user",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/auth/signUp",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email Sign In",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"USER_TOKEN\", pm.response.json().data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "devicemodel",
+								"value": "IPhone 11 Pro",
+								"type": "text"
+							},
+							{
+								"key": "deviceuniqueid",
+								"value": "UUID_IPhone11Pro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"hand@yopmail.com\",\r\n    \"password\": \"Abc@1234\",\r\n    \"role\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/signIn",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"signIn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Social Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"USER_TOKEN\", pm.response.json().data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "devicemodel",
+								"value": "IPhone 11 Pro",
+								"type": "text"
+							},
+							{
+								"key": "deviceuniqueid",
+								"value": "UUID_IPhone11Pro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idToken\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6ImNjNWU0MTg0M2M1ZDUyZTY4ZWY1M2UyYmVjOTgxNDNkYTE0NDkwNWUiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSHV6YWlmYSBBbGkiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSkNjV0RuMkxtTTZCQTQxaVhqVS10RUxteU5kb0dCclpRaTgxZnFlRVNYekVoZ0VBPXM5Ni1jIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL3JlbnRpYmxlcy1hcHAiLCJhdWQiOiJyZW50aWJsZXMtYXBwIiwiYXV0aF90aW1lIjoxNzI1MDEwOTY2LCJ1c2VyX2lkIjoiQUU0UW04MUk4eWFCU25zV0dKekpWMEFCcWN4MiIsInN1YiI6IkFFNFFtODFJOHlhQlNuc1dHSnpKVjBBQnFjeDIiLCJpYXQiOjE3MjUwMTA5NjYsImV4cCI6MTcyNTAxNDU2NiwiZW1haWwiOiJodXphaWZhLmFsaUBsYXVuY2hib3gucGsiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExMDAzNjAzMDM5NTMwMTI3MTM2MyJdLCJlbWFpbCI6WyJodXphaWZhLmFsaUBsYXVuY2hib3gucGsiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.KdSzupFLphHOlGq2JR7IGr_KBXnlB5JRKYjQ3CUIjK8ds06CJtRmPkzFPELctT6AYrk1z1y4YhrW_WuX4yoF_3XEbH2sGSTysBhqIXHYw9lez8tBoZ5_m4ZJPpLySUSkhVNnw5DsAQ9aH3z3NJ3ZcpFvIoX71ISy6dsUFMsm8xyKmNZOdKYPWEPWys31Ozqo-5RypEw3va6iHz0CBjtK0SgAJ-5Xx4Ehuu1kX8wwH4l1Vb59Lj1SbRE3tl7CQuEwI4VFJBVYEn1QLmP6xGPKWt6Kqh7iJvXWHtaekXTIM_yLLZATYNokOO90XoL2WLfdV72CTqPR5qkgDb5jgGphAA\",\r\n    \"role\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/socialRegister",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"socialRegister"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Complete Sign Up",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"USER_TOKEN\", pm.response.json().data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "devicemodel",
+								"value": "IPhone 11 Pro",
+								"type": "text"
+							},
+							{
+								"key": "deviceuniqueid",
+								"value": "UUID_IPhone11Pro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tony Stark\",\r\n    \"phone\": \"123456789\",\r\n    \"password\": \"Test@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/completeSignUp",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"completeSignUp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "devicemodel",
+								"value": "IPhone 11 Pro",
+								"type": "text"
+							},
+							{
+								"key": "deviceuniqueid",
+								"value": "UUID_IPhone11Pro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"huzaifa.ali@launchbox.pk\",\r\n    \"role\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/forgot",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"forgot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify OTP",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "devicemodel",
+								"value": "IPhone 11 Pro",
+								"type": "text"
+							},
+							{
+								"key": "deviceuniqueid",
+								"value": "UUID_IPhone11Pro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"huzaifa.ali@launchbox.pk\",\r\n    \"role\": \"user\",\r\n    \"otp\": 162777\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/verifyOTP",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"verifyOTP"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZjE1YTk2NmY0MjM4MDI4MjU2MjM2OSIsImlhdCI6MTcyNzA5MzM5OCwiZXhwIjoxNzM0ODY5Mzk4fQ.-nWsjMxpPpx9I-zrqXKNm_bbMZhbzSI2b3cpTJYrHbU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "devicemodel",
+								"value": "IPhone 11 Pro",
+								"type": "text"
+							},
+							{
+								"key": "deviceuniqueid",
+								"value": "UUID_IPhone11Pro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"Test@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/updatePassword",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"updatePassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{USER_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "devicemodel",
+								"value": "IPhone 11 Pro",
+								"type": "text"
+							},
+							{
+								"key": "deviceuniqueid",
+								"value": "UUID_IPhone11Pro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/delete",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{USER_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "devicemodel",
+								"value": "IPhone 11 Pro",
+								"type": "text"
+							},
+							{
+								"key": "deviceuniqueid",
+								"value": "UUID_IPhone11Pro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"Test@123\",\r\n    \"newPassword\": \"Test@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/changePassword",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"changePassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update FCM Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{USER_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "devicemodel",
+								"value": "IPhone 11 Pro",
+								"type": "text"
+							},
+							{
+								"key": "deviceuniqueid",
+								"value": "UUID_IPhone11Pro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fcmToken\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/updateFCM",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"updateFCM"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{USER_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "devicemodel",
+								"value": "IPhone 11 Pro",
+								"type": "text"
+							},
+							{
+								"key": "deviceuniqueid",
+								"value": "UUID_IPhone11Pro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/logout",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email Verification OTP",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{USER_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "devicemodel",
+								"value": "IPhone 11 Pro",
+								"type": "text"
+							},
+							{
+								"key": "deviceuniqueid",
+								"value": "UUID_IPhone11Pro",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/auth/emailVerificationOTP",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"emailVerificationOTP"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{USER_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "devicemodel",
+								"value": "IPhone 11 Pro",
+								"type": "text"
+							},
+							{
+								"key": "deviceuniqueid",
+								"value": "UUID_IPhone11Pro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"otp\": \"880306\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/verifyEmail",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"verifyEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Phone Verification OTP",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{USER_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "devicemodel",
+								"value": "IPhone 11 Pro",
+								"type": "text"
+							},
+							{
+								"key": "deviceuniqueid",
+								"value": "UUID_IPhone11Pro",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/auth/phoneVerificationOTP",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"phoneVerificationOTP"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Phone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{USER_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "devicemodel",
+								"value": "IPhone 11 Pro",
+								"type": "text"
+							},
+							{
+								"key": "deviceuniqueid",
+								"value": "UUID_IPhone11Pro",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/auth/verifyPhone",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"verifyPhone"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:3050",
+			"type": "string"
+		},
+		{
+			"key": "USER_TOKEN",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
