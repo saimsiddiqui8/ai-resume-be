@@ -17,5 +17,4 @@ const SettingsSchema = new Schema(
 );
 
 const SettingsModel = models.Settings || model('Settings', SettingsSchema);
-
 module.exports = SettingsModel;

@@ -3,23 +3,29 @@ const { Schema, model, models } = pkg;
 
 const OTPSchema = new Schema(
     {
-        signUpRecord: {
-            type: Schema.Types.ObjectId,
-            ref: 'SignUp',
+        email: {
+            type: String,
             required: true,
+            unique: true,
+            lowercase: true,
+            trim: true,
         },
         otp: {
             type: Number,
-            require: true,
+            required: true,
+            length: 5,
         },
-        type: {
-            type: String,
-            enum: {
-                values: ['email', 'phone'],
-            },
+        reattempts: {
+            type: Number,
+            default: 1,
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            expires: 300, // TTL: 300 seconds = 5 minutes
         },
     },
-    { timestamps: true },
+    { timestamps: false },
 );
 
 const OTPModel = models.OTP || model('OTP', OTPSchema);

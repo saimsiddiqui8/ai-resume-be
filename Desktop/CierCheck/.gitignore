@@ -1,3 +1,10 @@
-.env
 *node_modules/
 /uploads
+key.pem
+cier-check-key.pem
+.vscode/
+.cursor/
+config.toml
+extensions.json
+*.proj
+*.config

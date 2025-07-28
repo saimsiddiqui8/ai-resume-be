@@ -1,6 +1,7 @@
 const pkg = require('mongoose');
 const { Schema, model, models } = pkg;
 
+// NOT FINALIZED YET !!!
 const AdminSchema = new Schema(
     {
         name: {
@@ -15,14 +16,9 @@ const AdminSchema = new Schema(
             type: String,
             default: null,
         },
-        signUpRecord: {
-            type: Schema.Types.ObjectId,
-            ref: 'SignUp',
-            select: false,
-        },
-        uid: {
+        password: {
             type: String,
-            default: null,
+            required: true,
         },
     },
     { timestamps: true },

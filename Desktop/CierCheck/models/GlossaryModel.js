@@ -3,9 +3,18 @@ const { Schema, model, models } = pkg;
 
 const GlossarySchema = new Schema(
     {
-        title: { type: String, required: true },
-        content: { type: String, required: true },
-        category: { type: String, default: '' },
+        title: {
+            type: String,
+            required: true,
+        },
+        content: {
+            type: String,
+            required: true,
+        },
+        category: {
+            type: String,
+            default: '',
+        },
     },
     { timestamps: true },
 );

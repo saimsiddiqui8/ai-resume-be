@@ -1,35 +1,50 @@
 const express = require('express');
 const router = express.Router();
-const {
-    emailSignIn,
-    emailSignUp,
-    // socialRegister,
-    // updatePassword,
-    // changePassword,
-    // verifyOTP,
-    // forgotPassword,
-    // logout,
-    // updateFCMToken,
-    // deleteAccount,
-    // sendEmailVerificationOTP,
-    // verifyEmail,
-    // sendPhoneVerificationOTP,
-    // verifyPhone,
-    // checkEmail,
-} = require('../controller/patient/AuthController');
-
+const upload = require('../middlewares/Upload');
 const ProtectRouteMiddleware = require('../middlewares/ProtectRouteMiddleware');
-const { createMulter } = require('../utils/Helper');
-const catchAsync = require('../utils/catchAsync');
-const { EmailSignUpValidator } = require('../validators/AuthValidators');
+const catchAsync = require('../utils/CatchAsync');
 const validate = require('../middlewares/Validate');
-const upload = createMulter('./uploads/pictures/');
+const DeviceMiddleware = require('../middlewares/DeviceMiddleware');
+const {
+    socialAuth,
+    addPatientDetails,
+    updatePatientUsername,
+    editPatientDetails,
+    initiateDeleteAccount,
+    deleteAccount,
+    verifyDelete,
+} = require('../controller/patient/AuthController');
+const {
+    socialAuthValidate,
+    addPatientDetailsValidate,
+    patientUsernameValidate,
+    editPatientDetailsValidate,
+    DeleteAccountOtpValidator,
+} = require('../validators/AuthValidators');
 
-
-router.post('/signUp', validate(EmailSignUpValidator), catchAsync(patientSignUp));
-
-
-
-
+router.post('/social-auth', DeviceMiddleware, validate(socialAuthValidate), catchAsync(socialAuth));
+router.post(
+    '/add-details',
+    ProtectRouteMiddleware,
+    upload.single('profilePic'),
+    validate(addPatientDetailsValidate),
+    catchAsync(addPatientDetails),
+);
+router.post(
+    '/add-username',
+    ProtectRouteMiddleware,
+    validate(patientUsernameValidate),
+    catchAsync(updatePatientUsername),
+);
+router.post(
+    '/edit-details',
+    ProtectRouteMiddleware,
+    upload.single('profilePic'),
+    validate(editPatientDetailsValidate),
+    catchAsync(editPatientDetails),
+);
+router.post('/initiate-delete', ProtectRouteMiddleware, catchAsync(initiateDeleteAccount));
+router.post('/verify-delete', ProtectRouteMiddleware, validate(DeleteAccountOtpValidator), catchAsync(verifyDelete));
+router.post('/delete-account', ProtectRouteMiddleware, catchAsync(deleteAccount));
 
 module.exports = router;

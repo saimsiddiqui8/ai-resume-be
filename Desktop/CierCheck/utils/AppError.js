@@ -18,7 +18,6 @@ const ErrorType = {
     INTERNAL: 'INTERNAL_ERROR',
 };
 
-
 class AppError extends Error {
     constructor(message, type, code = HttpStatusCode.INTERNAL_SERVER_ERROR, errors = []) {
         super(message);
@@ -71,7 +70,12 @@ class AppError extends Error {
     }
 
     static database(message = 'Database operation failed', errors = []) {
-        return new AppError(message, ErrorType.DATABASE, HttpStatusCode.INTERNAL_SERVER_ERROR, errors);
+        return new AppError(
+            message,
+            ErrorType.DATABASE,
+            HttpStatusCode.INTERNAL_SERVER_ERROR,
+            errors,
+        );
     }
 }
 

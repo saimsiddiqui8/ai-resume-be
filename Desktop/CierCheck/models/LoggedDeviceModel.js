@@ -3,21 +3,12 @@ const { Schema, model, models, Types } = pkg;
 
 const LoggedDeviceSchema = new Schema(
     {
-        patient: {
+        user: {
             type: Types.ObjectId,
-            ref: 'Patient',
+            ref: 'User',
             required: false,
         },
-        doctor: {
-            type: Types.ObjectId,
-            ref: 'Doctor',
-            required: false,
-        },
-        fcmToken: {
-            type: String,
-            default: null,
-        },
-        deviceIdentity: {
+        deviceUniqueId: {
             type: String,
         },
         deviceModel: {

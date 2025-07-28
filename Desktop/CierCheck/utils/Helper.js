@@ -122,17 +122,15 @@ const sendSignInEmail = async (name, email, Otp) => {
     );
 };
 
-const sendOTPEmail = async (name, email, Otp) => {
+const sendOTPEmail = async (email, Otp) => {
     let otpTemp = await fs.readFileSync(
         path.join(process.cwd(), 'view', 'resendOtp.handlebars'),
         'utf8',
     );
 
-    otpTemp = await otpTemp
-        .replace('[Name]', name)
-        .replace('[otpCode]', Otp)
-        .replace('[appName]', process.env.APP_NAME);
+    otpTemp = await otpTemp.replace('[otpCode]', Otp).replace('[appName]', process.env.APP_NAME);
     const isSent = await sendEmail('Account Verification', otpTemp, email);
+    return isSent ? true : false;
 };
 
 const forgetPasswordEmail = async (name, email, Otp) => {

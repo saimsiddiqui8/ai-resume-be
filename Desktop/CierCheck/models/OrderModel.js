@@ -1,28 +1,49 @@
-const pkg = require('mongoose');
-const { Schema, model, models, Types } = pkg;
+const { Schema, model, models, Types } = require('mongoose');
 
-const AddressSchema = new Schema({
-    line1: String,
-    line2: String,
-    city: String,
-    state: String,
-    zip: String,
-    country: String
-}, { _id: false });
+const OrderItemSchema = new Schema(
+    {
+        product: {
+            type: Types.ObjectId,
+            ref: 'Product',
+            required: true,
+        },
+        quantity: {
+            type: Number,
+            required: true,
+            min: 1,
+        },
+        price: {
+            type: Number,
+            required: true,
+        },
+    },
+    { _id: false },
+);
 
-const OrderProductSchema = new Schema({
-    product: { type: Types.ObjectId, ref: 'Product', required: true },
-    quantity: { type: Number, required: true, default: 1 }
-}, { _id: false });
-
-const OrderSchema = new Schema({
-    patient: { type: Types.ObjectId, ref: 'Patient', required: true },
-    products: [OrderProductSchema],
-    totalAmount: { type: Number, required: true },
-    address: AddressSchema,
-    status: { type: String, enum: ['pending', 'shipped', 'delivered', 'cancelled'], default: 'pending' },
-    paymentMethod: { type: String, default: '' }
-}, { timestamps: true });
+const OrderSchema = new Schema(
+    {
+        user: {
+            type: Types.ObjectId,
+            ref: 'User',
+            required: true,
+        },
+        items: [OrderItemSchema],
+        totalAmount: {
+            type: Number,
+            required: true,
+        },
+        status: {
+            type: String,
+            enum: ['pending', 'processing', 'shipped', 'delivered', 'cancelled'],
+            default: 'pending',
+        },
+        isDeleted: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    { timestamps: true },
+);
 
 const OrderModel = models.Order || model('Order', OrderSchema);
 module.exports = OrderModel;
