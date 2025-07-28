@@ -1,0 +1,1141 @@
+{
+	"info": {
+		"_postman_id": "3dbd4f29-a400-4908-a138-9bfc1649698f",
+		"name": "Secound-Shot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32707852",
+		"_collection_link": "https://orange-equinox-666976.postman.co/workspace/second-shot~f4e1e2b7-7f3d-4b68-8fa1-b56b0001df69/collection/32707852-3dbd4f29-a400-4908-a138-9bfc1649698f?action=share&source=collection_link&creator=32707852"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Sign-Up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Sufyan\",\r\n    \"email\" : \"winisiv976@nozamas.com\",\r\n    \"phone\" : \"+13129718190\",\r\n    \"password\" : \"Asdf123$\",\r\n    \"confirm_password\" : \"Asdf123$\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/auth/sign-up"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify-OTP",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"userToken\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"winisiv976@nozamas.com\",\r\n    \"otp\" : \"260726\",\r\n    \"phone\" : \"+13129585458\", // optional\r\n    \"type\" : \"signup\" // optional when signup\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/auth/verify-otp"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify-OTP-Phone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"userToken\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\" : \"+13129585458\",\r\n    \"otp\" : \"496285\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/auth/verify-otp-phone"
+					},
+					"response": []
+				},
+				{
+					"name": "Resend-Email-OTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"winisiv976@nozamas.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/auth/resend-email-otp"
+					},
+					"response": []
+				},
+				{
+					"name": "Resend-Phone-OTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\" : \"+19999999999\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/auth/resend-phone-otp"
+					},
+					"response": []
+				},
+				{
+					"name": "Forget-Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"winisiv976@nozamas.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/auth/forget-password"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset-Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"winisiv976@nozamas.com\",\r\n    \"password\" : \"Asdf123$\",\r\n    \"confirm_password\" : \"Asdf123$\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/auth/reset-password"
+					},
+					"response": []
+				},
+				{
+					"name": "Register-Phone",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\" : \"+13129585458\",\r\n    \"email\" : \"winisiv976@nozamas.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/auth/register-phone"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify-Phone",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"otp\" : \"383683\",\r\n    \"email\" : \"winisiv976@nozamas.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/auth/verify-phone"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"userToken\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"winisiv976@nozamas.com\",\r\n    \"password\" : \"Asdf123$\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/auth/login"
+					},
+					"response": [
+						{
+							"name": "Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"winisiv976@nozamas.com\",\r\n    \"password\" : \"Asdf123$\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}/api/auth/login"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "284"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"11c-uY5t58/GqXZjIjhV+0BgM22EF7c\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 26 Nov 2024 13:41:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Login successful\",\n    \"is_subscription_paid\": false,\n    \"is_profile_completed\": true,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDViMzRjZDA5ZWNiNWRhYTJmYjc5NSIsImlhdCI6MTczMjYyODQ4NywiZXhwIjoxNzY0MTY0NDg3fQ.WTy4FPgPbMCwvNkQltoTLCohPRXaJk3_f4q_DwBNMzM\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Registration-Questions",
+			"item": [
+				{
+					"name": "Get-Services",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/api/services/get-services"
+					},
+					"response": [
+						{
+							"name": "Get-Services",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{URL}}/api/services/get-services"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "417"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1a1-4UFCUS46AIQitVk2C5KzPZV24Uk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 28 Nov 2024 10:47:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"674733b5f137f1039e5cd3bb\",\n            \"service_name\": \"Air Force Personnel\"\n        },\n        {\n            \"_id\": \"67481394f137f1039e5cd3c1\",\n            \"service_name\": \"Army personnel\"\n        },\n        {\n            \"_id\": \"674813daf137f1039e5cd3c5\",\n            \"service_name\": \"Coast Guard\"\n        },\n        {\n            \"_id\": \"67481413f137f1039e5cd3c9\",\n            \"service_name\": \"Marine Corps\"\n        },\n        {\n            \"_id\": \"67481458f137f1039e5cd3cd\",\n            \"service_name\": \"National Guard\"\n        },\n        {\n            \"_id\": \"67481471f137f1039e5cd3d1\",\n            \"service_name\": \"NAVY\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get-Ranks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/api/services/get-ranks"
+					},
+					"response": [
+						{
+							"name": "Get-Ranks",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{URL}}/api/services/get-ranks"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "16734"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"415e-b9yyjWjcYch1DZblRw4gCZQOopY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 Nov 2024 07:42:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"67481d8327ea2af7ce706746\",\n            \"rank_name\": \"Airman Basic (E-1)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"674822bd27ea2af7ce70674e\",\n            \"rank_name\": \"Airman (E-2)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"674823c61964f3edd3b700a6\",\n            \"rank_name\": \"Airman First Class (E-3)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"6748243e1964f3edd3b700af\",\n            \"rank_name\": \"Senior Airman (E-4)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"674824901964f3edd3b700b8\",\n            \"rank_name\": \"Staff Sergeant (E-5)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"674824f51964f3edd3b700c1\",\n            \"rank_name\": \"Technical Sergeant (E-6)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"674825981964f3edd3b700ca\",\n            \"rank_name\": \"Master Sergeant (E-7)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"674825f51964f3edd3b700d3\",\n            \"rank_name\": \"Senior Master Sergeant (E-8)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"674832751964f3edd3b700dc\",\n            \"rank_name\": \"Chief Master Sergeant (E-9)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"6748404a1964f3edd3b700e5\",\n            \"rank_name\": \"Second Lieutenant (O-1)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"674840da1964f3edd3b700ee\",\n            \"rank_name\": \"First Lieutenant (O-2)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"6748416a1964f3edd3b700f7\",\n            \"rank_name\": \"Captain (O-3)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"674841f41964f3edd3b70100\",\n            \"rank_name\": \"Major (O-4)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"6748424e1964f3edd3b70109\",\n            \"rank_name\": \"Lieutenant Colonel (O-5)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"674842f91964f3edd3b70112\",\n            \"rank_name\": \"Colonel (O-6)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"674843b61964f3edd3b7011b\",\n            \"rank_name\": \"Brigadier General (O-7)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"674845311964f3edd3b70126\",\n            \"rank_name\": \"Major General (O-8)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"67484f1869dec7196c4c2597\",\n            \"rank_name\": \"Lieutenant General (O-9)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"67484f2f69dec7196c4c25a0\",\n            \"rank_name\": \"General (O-10)\",\n            \"serviceId\": {\n                \"_id\": \"674733b5f137f1039e5cd3bb\",\n                \"service_name\": \"Air Force Personnel\"\n            }\n        },\n        {\n            \"_id\": \"6748504169dec7196c4c25a9\",\n            \"rank_name\": \"Private (E-1 to E-2)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"674850d269dec7196c4c25b5\",\n            \"rank_name\": \"Specialist (E-4)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"6748510b69dec7196c4c25be\",\n            \"rank_name\": \"Sergeant (E-5)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"6748525369dec7196c4c25c7\",\n            \"rank_name\": \"Staff Sergeant (E-6)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"6748529669dec7196c4c25d0\",\n            \"rank_name\": \"Sergeant First Class (E-7)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"6748536869dec7196c4c25d9\",\n            \"rank_name\": \"Master Sergeant (E-8)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"6748545269dec7196c4c25e2\",\n            \"rank_name\": \"Sergeant Major (E-9)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"6748549069dec7196c4c25eb\",\n            \"rank_name\": \"Warrant Officer (WO1 to CW5)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"674854dc69dec7196c4c25f4\",\n            \"rank_name\": \"Commissioned Officers (2nd Lieutenant to General)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"6748552369dec7196c4c25fd\",\n            \"rank_name\": \"Second Lieutenant (O-1)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"674855dc69dec7196c4c2606\",\n            \"rank_name\": \"First Lieutenant (O-2)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"6748561769dec7196c4c260f\",\n            \"rank_name\": \"Captain (O-3)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"6748565f69dec7196c4c2618\",\n            \"rank_name\": \"Major (O-4)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"674856da69dec7196c4c2621\",\n            \"rank_name\": \"Lieutenant Colonel (O-5)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"6748579d69dec7196c4c262a\",\n            \"rank_name\": \"Colonel (O-6)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"674857d769dec7196c4c2633\",\n            \"rank_name\": \"Brigadier General (O-7)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"674858ef2bac2015a7e5fa08\",\n            \"rank_name\": \"Major General (O-8)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"6748593c2bac2015a7e5fa11\",\n            \"rank_name\": \"Lieutenant General (O-9)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"6748598a2bac2015a7e5fa1c\",\n            \"rank_name\": \"General (O-10)\",\n            \"serviceId\": {\n                \"_id\": \"67481394f137f1039e5cd3c1\",\n                \"service_name\": \"Army personnel\"\n            }\n        },\n        {\n            \"_id\": \"67485a4c2bac2015a7e5fa25\",\n            \"rank_name\": \"Seaman (E-1 to E-3)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"67485a992bac2015a7e5fa31\",\n            \"rank_name\": \"Petty Officer (E-4 to E-6)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"67485acc2bac2015a7e5fa3a\",\n            \"rank_name\": \"Chief Petty Officer (E-7)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"67485b032bac2015a7e5fa43\",\n            \"rank_name\": \"Warrant Officer (WO-1 to CW4)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"67485b6a2bac2015a7e5fa4c\",\n            \"rank_name\": \"Lieutenant (O-1 to O-2)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"67485bb52bac2015a7e5fa55\",\n            \"rank_name\": \"Lieutenant Commander (O-4)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"67485bde2bac2015a7e5fa5e\",\n            \"rank_name\": \"Commander (O-5)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"67485cdc2bac2015a7e5fa67\",\n            \"rank_name\": \"Captain (O-6)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"67485d2f2bac2015a7e5fa70\",\n            \"rank_name\": \"Ensign (O-1)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"67485d972bac2015a7e5fa79\",\n            \"rank_name\": \"Lieutenant Junior Grade (O-2)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"674863e02bac2015a7e5fa82\",\n            \"rank_name\": \"Lieutenant (O-3)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"6748640a2bac2015a7e5fa8b\",\n            \"rank_name\": \"Lieutenant Commander (O-4)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"674864532bac2015a7e5fa94\",\n            \"rank_name\": \"Commander (O-5)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"674864802bac2015a7e5fa9d\",\n            \"rank_name\": \"Captain (O-6)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"674864bc2bac2015a7e5faa6\",\n            \"rank_name\": \"Rear Admiral (Commodore) (O-7)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"674864e32bac2015a7e5faaf\",\n            \"rank_name\": \"Rear Admiral (Upper Half) (O-8)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"6748650c2bac2015a7e5fab8\",\n            \"rank_name\": \"Vice Admiral (O-9)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"674865712bac2015a7e5fac1\",\n            \"rank_name\": \"Chief of Naval Operations (CNO)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"6748658d2bac2015a7e5faca\",\n            \"rank_name\": \"Commandant of the Coast Guard (O-10)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"674865ee2bac2015a7e5fad3\",\n            \"rank_name\": \"Admiral (O-10)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"674866432bac2015a7e5fadc\",\n            \"rank_name\": \"Fleet Admiral (O-10)\",\n            \"serviceId\": {\n                \"_id\": \"674813daf137f1039e5cd3c5\",\n                \"service_name\": \"Coast Guard\"\n            }\n        },\n        {\n            \"_id\": \"674866d52bac2015a7e5fae8\",\n            \"rank_name\": \"Private (E-1)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"6748671d2bac2015a7e5faf4\",\n            \"rank_name\": \"Private First Class (E-2)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"674867612bac2015a7e5fafd\",\n            \"rank_name\": \"Lance Corporal (E-3)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"67486c4d2bac2015a7e5fb06\",\n            \"rank_name\": \"Corporal (E-4)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"67486cb12bac2015a7e5fb0f\",\n            \"rank_name\": \"Sergeant (E-5)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"67486cee2bac2015a7e5fb18\",\n            \"rank_name\": \"Staff Sergeant (E-6)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"67486d6b2bac2015a7e5fb21\",\n            \"rank_name\": \"Gunnery Sergeant (E-7)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"67486e032bac2015a7e5fb2a\",\n            \"rank_name\": \"Master Sergeant (E-8)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"67486e672bac2015a7e5fb33\",\n            \"rank_name\": \"First Sergeant (E-8)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"674874b42bac2015a7e5fb3c\",\n            \"rank_name\": \"Sergeant Major (E-9)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"674874e42bac2015a7e5fb45\",\n            \"rank_name\": \"Warrant Officer (WO)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"674875212bac2015a7e5fb4e\",\n            \"rank_name\": \"Second Lieutenant (O-1)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"6748754d2bac2015a7e5fb57\",\n            \"rank_name\": \"First Lieutenant (O-2)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"674875822bac2015a7e5fb60\",\n            \"rank_name\": \"Captain (O-3)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"674875b12bac2015a7e5fb69\",\n            \"rank_name\": \"Major (O-4)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"674875e02bac2015a7e5fb72\",\n            \"rank_name\": \"Lieutenant Colonel (O-5)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"674876132bac2015a7e5fb7b\",\n            \"rank_name\": \"Colonel (O-6)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"6748763c2bac2015a7e5fb84\",\n            \"rank_name\": \"Brigadier General (O-7)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"6748766d2bac2015a7e5fb8d\",\n            \"rank_name\": \"Major General (O-8)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"6748769f2bac2015a7e5fb96\",\n            \"rank_name\": \"General (O-10)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"674876d82bac2015a7e5fb9f\",\n            \"rank_name\": \"Second Lieutenant (O-1)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"674877332bac2015a7e5fba8\",\n            \"rank_name\": \"First Lieutenant (O-2)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"674877672bac2015a7e5fbb1\",\n            \"rank_name\": \"Captain (O-3)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"674878812bac2015a7e5fbba\",\n            \"rank_name\": \"Major (O-4)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"674879092bac2015a7e5fbc3\",\n            \"rank_name\": \"Lieutenant Colonel (O-5)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"674879312bac2015a7e5fbcc\",\n            \"rank_name\": \"Colonel (O-6)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"6748795b2bac2015a7e5fbd5\",\n            \"rank_name\": \"Brigadier General (O-7)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"6748797f2bac2015a7e5fbde\",\n            \"rank_name\": \"Major General (O-8)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"674879e22bac2015a7e5fbe7\",\n            \"rank_name\": \"Lieutenant General (O-9)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"67487a132bac2015a7e5fbf0\",\n            \"rank_name\": \"General (O-10)\",\n            \"serviceId\": {\n                \"_id\": \"67481413f137f1039e5cd3c9\",\n                \"service_name\": \"Marine Corps\"\n            }\n        },\n        {\n            \"_id\": \"674962ff2bac2015a7e5fbfc\",\n            \"rank_name\": \"Private (E-1 to E-2)\",\n            \"serviceId\": {\n                \"_id\": \"67481458f137f1039e5cd3cd\",\n                \"service_name\": \"National Guard\"\n            }\n        },\n        {\n            \"_id\": \"674963572bac2015a7e5fc08\",\n            \"rank_name\": \"Private First Class (E-3)\",\n            \"serviceId\": {\n                \"_id\": \"67481458f137f1039e5cd3cd\",\n                \"service_name\": \"National Guard\"\n            }\n        },\n        {\n            \"_id\": \"6749638c2bac2015a7e5fc11\",\n            \"rank_name\": \"Specialist (E-4)\",\n            \"serviceId\": {\n                \"_id\": \"67481458f137f1039e5cd3cd\",\n                \"service_name\": \"National Guard\"\n            }\n        },\n        {\n            \"_id\": \"674963d42bac2015a7e5fc1a\",\n            \"rank_name\": \"Second Lieutenant (O-1)\",\n            \"serviceId\": {\n                \"_id\": \"67481458f137f1039e5cd3cd\",\n                \"service_name\": \"National Guard\"\n            }\n        },\n        {\n            \"_id\": \"674964392bac2015a7e5fc25\",\n            \"rank_name\": \"First Lieutenant (O-2)\",\n            \"serviceId\": {\n                \"_id\": \"67481458f137f1039e5cd3cd\",\n                \"service_name\": \"National Guard\"\n            }\n        },\n        {\n            \"_id\": \"6749646f2bac2015a7e5fc2e\",\n            \"rank_name\": \"Captain (O-3)\",\n            \"serviceId\": {\n                \"_id\": \"67481458f137f1039e5cd3cd\",\n                \"service_name\": \"National Guard\"\n            }\n        },\n        {\n            \"_id\": \"674964db2bac2015a7e5fc37\",\n            \"rank_name\": \"Major (O-4)\",\n            \"serviceId\": {\n                \"_id\": \"67481458f137f1039e5cd3cd\",\n                \"service_name\": \"National Guard\"\n            }\n        },\n        {\n            \"_id\": \"6749657d2bac2015a7e5fc40\",\n            \"rank_name\": \"Lieutenant Colonel (O-5)\",\n            \"serviceId\": {\n                \"_id\": \"67481458f137f1039e5cd3cd\",\n                \"service_name\": \"National Guard\"\n            }\n        },\n        {\n            \"_id\": \"674966242bac2015a7e5fc49\",\n            \"rank_name\": \"Colonel (O-6)\",\n            \"serviceId\": {\n                \"_id\": \"67481458f137f1039e5cd3cd\",\n                \"service_name\": \"National Guard\"\n            }\n        },\n        {\n            \"_id\": \"674966872bac2015a7e5fc52\",\n            \"rank_name\": \"Seaman Recruit (E-1)\",\n            \"serviceId\": {\n                \"_id\": \"67481471f137f1039e5cd3d1\",\n                \"service_name\": \"NAVY\"\n            }\n        },\n        {\n            \"_id\": \"6749696e2bac2015a7e5fc5e\",\n            \"rank_name\": \"Seaman (E-2)\",\n            \"serviceId\": {\n                \"_id\": \"67481471f137f1039e5cd3d1\",\n                \"service_name\": \"NAVY\"\n            }\n        },\n        {\n            \"_id\": \"674969c12bac2015a7e5fc67\",\n            \"rank_name\": \"Petty Officer Third Class (E-4)\",\n            \"serviceId\": {\n                \"_id\": \"67481471f137f1039e5cd3d1\",\n                \"service_name\": \"NAVY\"\n            }\n        },\n        {\n            \"_id\": \"67496a612bac2015a7e5fc70\",\n            \"rank_name\": \"Petty Officer Second Class (E-5)\",\n            \"serviceId\": {\n                \"_id\": \"67481471f137f1039e5cd3d1\",\n                \"service_name\": \"NAVY\"\n            }\n        },\n        {\n            \"_id\": \"67496ac22bac2015a7e5fc79\",\n            \"rank_name\": \"Petty Officer First Class (E-6)\",\n            \"serviceId\": {\n                \"_id\": \"67481471f137f1039e5cd3d1\",\n                \"service_name\": \"NAVY\"\n            }\n        },\n        {\n            \"_id\": \"67496b222bac2015a7e5fc82\",\n            \"rank_name\": \"Chief Petty Officer (E-7)\",\n            \"serviceId\": {\n                \"_id\": \"67481471f137f1039e5cd3d1\",\n                \"service_name\": \"NAVY\"\n            }\n        },\n        {\n            \"_id\": \"67496ba42bac2015a7e5fc8b\",\n            \"rank_name\": \"Ensign (O-1)\",\n            \"serviceId\": {\n                \"_id\": \"67481471f137f1039e5cd3d1\",\n                \"service_name\": \"NAVY\"\n            }\n        },\n        {\n            \"_id\": \"67496c652bac2015a7e5fc94\",\n            \"rank_name\": \"Lieutenant Junior Grade (O-2)\",\n            \"serviceId\": {\n                \"_id\": \"67481471f137f1039e5cd3d1\",\n                \"service_name\": \"NAVY\"\n            }\n        },\n        {\n            \"_id\": \"67496ca92bac2015a7e5fc9d\",\n            \"rank_name\": \"Lieutenant (O-3)\",\n            \"serviceId\": {\n                \"_id\": \"67481471f137f1039e5cd3d1\",\n                \"service_name\": \"NAVY\"\n            }\n        },\n        {\n            \"_id\": \"67496ce62bac2015a7e5fca6\",\n            \"rank_name\": \"Lieutenant Commander (O-4)\",\n            \"serviceId\": {\n                \"_id\": \"67481471f137f1039e5cd3d1\",\n                \"service_name\": \"NAVY\"\n            }\n        },\n        {\n            \"_id\": \"67496d0d2bac2015a7e5fcaf\",\n            \"rank_name\": \"Commander (O-5)\",\n            \"serviceId\": {\n                \"_id\": \"67481471f137f1039e5cd3d1\",\n                \"service_name\": \"NAVY\"\n            }\n        },\n        {\n            \"_id\": \"67496d732bac2015a7e5fcb8\",\n            \"rank_name\": \"Captain (O-6)\",\n            \"serviceId\": {\n                \"_id\": \"67481471f137f1039e5cd3d1\",\n                \"service_name\": \"NAVY\"\n            }\n        },\n        {\n            \"_id\": \"67496db62bac2015a7e5fcc1\",\n            \"rank_name\": \"Rear Admiral Lower Half (O-7)\",\n            \"serviceId\": {\n                \"_id\": \"67481471f137f1039e5cd3d1\",\n                \"service_name\": \"NAVY\"\n            }\n        },\n        {\n            \"_id\": \"67496dcc2bac2015a7e5fcca\",\n            \"rank_name\": \"Rear Admiral Upper Half (O-8)\",\n            \"serviceId\": {\n                \"_id\": \"67481471f137f1039e5cd3d1\",\n                \"service_name\": \"NAVY\"\n            }\n        },\n        {\n            \"_id\": \"67496e012bac2015a7e5fcd3\",\n            \"rank_name\": \"Fleet Admiral (O-10)\",\n            \"serviceId\": {\n                \"_id\": \"67481471f137f1039e5cd3d1\",\n                \"service_name\": \"NAVY\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get-Sports",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/api/services/get-sports"
+					},
+					"response": [
+						{
+							"name": "Get-Sports-Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{URL}}/api/services/get-sports"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1360"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"550-8HPamNDksGxODJG4gkIPj6KUOao\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 02 Dec 2024 11:31:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"674adbee2763b173dbbc5d1b\",\n            \"sport_name\": \"Badminton\"\n        },\n        {\n            \"_id\": \"674b5dcb2763b173dbbc5d21\",\n            \"sport_name\": \"BaseballSoftball\"\n        },\n        {\n            \"_id\": \"674b5e342763b173dbbc5d25\",\n            \"sport_name\": \"Basketball\"\n        },\n        {\n            \"_id\": \"674b5e4f2763b173dbbc5d29\",\n            \"sport_name\": \"Bowling\"\n        },\n        {\n            \"_id\": \"674b5e952763b173dbbc5d2d\",\n            \"sport_name\": \"Cheerleading\"\n        },\n        {\n            \"_id\": \"674b5ee72763b173dbbc5d31\",\n            \"sport_name\": \"Cross Country\"\n        },\n        {\n            \"_id\": \"674b5f942763b173dbbc5d35\",\n            \"sport_name\": \"Dance\"\n        },\n        {\n            \"_id\": \"674b5fb22763b173dbbc5d39\",\n            \"sport_name\": \"Field Hockey\"\n        },\n        {\n            \"_id\": \"674b5fdb2763b173dbbc5d3d\",\n            \"sport_name\": \"American Football\"\n        },\n        {\n            \"_id\": \"674b5ff22763b173dbbc5d41\",\n            \"sport_name\": \"Golf\"\n        },\n        {\n            \"_id\": \"674b60052763b173dbbc5d45\",\n            \"sport_name\": \"Gymnastics\"\n        },\n        {\n            \"_id\": \"674b601f2763b173dbbc5d49\",\n            \"sport_name\": \"Hockey\"\n        },\n        {\n            \"_id\": \"674b604b2763b173dbbc5d4d\",\n            \"sport_name\": \"Lacrosse\"\n        },\n        {\n            \"_id\": \"674b606b2763b173dbbc5d51\",\n            \"sport_name\": \"Pickleball\"\n        },\n        {\n            \"_id\": \"674b60832763b173dbbc5d55\",\n            \"sport_name\": \"Ping Pong\"\n        },\n        {\n            \"_id\": \"674b60b92763b173dbbc5d59\",\n            \"sport_name\": \"Skiing\"\n        },\n        {\n            \"_id\": \"674b60dc2763b173dbbc5d5d\",\n            \"sport_name\": \"Soccer\"\n        },\n        {\n            \"_id\": \"674b61152763b173dbbc5d61\",\n            \"sport_name\": \"Tennis\"\n        },\n        {\n            \"_id\": \"674b61582763b173dbbc5d65\",\n            \"sport_name\": \"Track and Field\"\n        },\n        {\n            \"_id\": \"674b61de2763b173dbbc5d69\",\n            \"sport_name\": \"Volleyball\"\n        },\n        {\n            \"_id\": \"674b62072763b173dbbc5d6d\",\n            \"sport_name\": \"Weightlifting\"\n        },\n        {\n            \"_id\": \"674b622d2763b173dbbc5d71\",\n            \"sport_name\": \"Wrestling\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get-Sport-Positions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/api/services/get-sport-positions"
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Hobbies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/api/services/get-hobbies"
+					},
+					"response": [
+						{
+							"name": "Get-Hobbies-Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{URL}}/api/services/get-hobbies"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "7159"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1bf7-FibQsd/MvYj3eiwEmkm5cq0MQug\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 05 Dec 2024 12:22:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"67504bacbcb07c8d06053129\",\n            \"hobbie_name\": \"Reading\"\n        },\n        {\n            \"_id\": \"67504d75da35191c001f37e2\",\n            \"hobbie_name\": \"Writing\"\n        },\n        {\n            \"_id\": \"67504fa774351dc58a78f943\",\n            \"hobbie_name\": \"Drawing\"\n        },\n        {\n            \"_id\": \"6750500774351dc58a78f955\",\n            \"hobbie_name\": \"Painting\"\n        },\n        {\n            \"_id\": \"675050f674351dc58a78f95e\",\n            \"hobbie_name\": \"Cooking\"\n        },\n        {\n            \"_id\": \"6750513274351dc58a78f967\",\n            \"hobbie_name\": \"Baking\"\n        },\n        {\n            \"_id\": \"6750515774351dc58a78f970\",\n            \"hobbie_name\": \"Gardening\"\n        },\n        {\n            \"_id\": \"6750517f74351dc58a78f979\",\n            \"hobbie_name\": \"Hiking\"\n        },\n        {\n            \"_id\": \"675051ad74351dc58a78f982\",\n            \"hobbie_name\": \"Camping\"\n        },\n        {\n            \"_id\": \"675051d874351dc58a78f98b\",\n            \"hobbie_name\": \"Fishing\"\n        },\n        {\n            \"_id\": \"6750520a74351dc58a78f994\",\n            \"hobbie_name\": \"Birdwatching\"\n        },\n        {\n            \"_id\": \"6750522b74351dc58a78f99d\",\n            \"hobbie_name\": \"Photography\"\n        },\n        {\n            \"_id\": \"6750590f74351dc58a78f9a6\",\n            \"hobbie_name\": \"Traveling\"\n        },\n        {\n            \"_id\": \"675059ab74351dc58a78f9af\",\n            \"hobbie_name\": \"Woodworking\"\n        },\n        {\n            \"_id\": \"675059d574351dc58a78f9b8\",\n            \"hobbie_name\": \"Knitting\"\n        },\n        {\n            \"_id\": \"67505a1074351dc58a78f9c1\",\n            \"hobbie_name\": \"Crocheting\"\n        },\n        {\n            \"_id\": \"67505a5774351dc58a78f9ca\",\n            \"hobbie_name\": \"Sewing\"\n        },\n        {\n            \"_id\": \"67506e2974351dc58a78f9d3\",\n            \"hobbie_name\": \"Quilting\"\n        },\n        {\n            \"_id\": \"67506e7274351dc58a78f9dc\",\n            \"hobbie_name\": \"Sculpting\"\n        },\n        {\n            \"_id\": \"67506e9674351dc58a78f9e5\",\n            \"hobbie_name\": \"Playing Musical Instruments (e.g., Guitar, Piano)\"\n        },\n        {\n            \"_id\": \"67506eba74351dc58a78f9ee\",\n            \"hobbie_name\": \"Singing\"\n        },\n        {\n            \"_id\": \"67506edb74351dc58a78f9f7\",\n            \"hobbie_name\": \"Dancing\"\n        },\n        {\n            \"_id\": \"67506f0274351dc58a78fa00\",\n            \"hobbie_name\": \"Acting\"\n        },\n        {\n            \"_id\": \"67506f2574351dc58a78fa09\",\n            \"hobbie_name\": \"Archery\"\n        },\n        {\n            \"_id\": \"67506faf74351dc58a78fa12\",\n            \"hobbie_name\": \"Playing Board Games\"\n        },\n        {\n            \"_id\": \"67506fe574351dc58a78fa1b\",\n            \"hobbie_name\": \"Playing Card Games (e.g., Poker, Bridge)\"\n        },\n        {\n            \"_id\": \"6750700974351dc58a78fa24\",\n            \"hobbie_name\": \"Playing Video Games\"\n        },\n        {\n            \"_id\": \"6750703b74351dc58a78fa2d\",\n            \"hobbie_name\": \"Collecting (e.g., Stamps, Coins)\"\n        },\n        {\n            \"_id\": \"6750705b74351dc58a78fa36\",\n            \"hobbie_name\": \"Biking\"\n        },\n        {\n            \"_id\": \"6750708774351dc58a78fa3f\",\n            \"hobbie_name\": \"Running\"\n        },\n        {\n            \"_id\": \"675070ae74351dc58a78fa48\",\n            \"hobbie_name\": \"Swimming\"\n        },\n        {\n            \"_id\": \"6750714ade469807d79ab6a3\",\n            \"hobbie_name\": \"Yoga\"\n        },\n        {\n            \"_id\": \"67507222de469807d79ab6ad\",\n            \"hobbie_name\": \"Weightlifting\"\n        },\n        {\n            \"_id\": \"67507266de469807d79ab6b6\",\n            \"hobbie_name\": \"Rock Climbing\"\n        },\n        {\n            \"_id\": \"675072a8de469807d79ab6bf\",\n            \"hobbie_name\": \"Surfing\"\n        },\n        {\n            \"_id\": \"675072d7de469807d79ab6c8\",\n            \"hobbie_name\": \"Martial Arts\"\n        },\n        {\n            \"_id\": \"6750730fde469807d79ab6d1\",\n            \"hobbie_name\": \"Chess\"\n        },\n        {\n            \"_id\": \"675073e2de469807d79ab6da\",\n            \"hobbie_name\": \"Puzzle Solving\"\n        },\n        {\n            \"_id\": \"67507427de469807d79ab6e3\",\n            \"hobbie_name\": \"Skateboarding\"\n        },\n        {\n            \"_id\": \"6750745fde469807d79ab6ec\",\n            \"hobbie_name\": \"Rollerblading\"\n        },\n        {\n            \"_id\": \"675074b7de469807d79ab6f6\",\n            \"hobbie_name\": \"Geocaching\"\n        },\n        {\n            \"_id\": \"675074eede469807d79ab6ff\",\n            \"hobbie_name\": \"Metal Detecting\"\n        },\n        {\n            \"_id\": \"6750750fde469807d79ab708\",\n            \"hobbie_name\": \"Astronomy\"\n        },\n        {\n            \"_id\": \"67507535de469807d79ab711\",\n            \"hobbie_name\": \"Volunteering\"\n        },\n        {\n            \"_id\": \"6750759dde469807d79ab71a\",\n            \"hobbie_name\": \"Blogging\"\n        },\n        {\n            \"_id\": \"675075c3de469807d79ab723\",\n            \"hobbie_name\": \"Vlogging\"\n        },\n        {\n            \"_id\": \"675075fede469807d79ab72c\",\n            \"hobbie_name\": \"Podcasting\"\n        },\n        {\n            \"_id\": \"67507647de469807d79ab735\",\n            \"hobbie_name\": \"Beekeeping\"\n        },\n        {\n            \"_id\": \"67507677de469807d79ab73e\",\n            \"hobbie_name\": \"Pottery\"\n        },\n        {\n            \"_id\": \"675076b7de469807d79ab747\",\n            \"hobbie_name\": \"Origami\"\n        },\n        {\n            \"_id\": \"675076f7de469807d79ab750\",\n            \"hobbie_name\": \"Candle Making\"\n        },\n        {\n            \"_id\": \"67507730de469807d79ab759\",\n            \"hobbie_name\": \"Soap Making\"\n        },\n        {\n            \"_id\": \"67507764de469807d79ab762\",\n            \"hobbie_name\": \"Jewelry Making\"\n        },\n        {\n            \"_id\": \"675077f3de469807d79ab76c\",\n            \"hobbie_name\": \"Embroidery\"\n        },\n        {\n            \"_id\": \"675078ae115ee1647aef6112\",\n            \"hobbie_name\": \"Calligraphy\"\n        },\n        {\n            \"_id\": \"675078d6115ee1647aef611b\",\n            \"hobbie_name\": \"Learning Languages\"\n        },\n        {\n            \"_id\": \"675078fc115ee1647aef6124\",\n            \"hobbie_name\": \"DIY Crafts\"\n        },\n        {\n            \"_id\": \"67507920115ee1647aef612d\",\n            \"hobbie_name\": \"Scrapbooking\"\n        },\n        {\n            \"_id\": \"675154a9115ee1647aef6136\",\n            \"hobbie_name\": \"Nail Art\"\n        },\n        {\n            \"_id\": \"675154cf115ee1647aef613f\",\n            \"hobbie_name\": \"Fashion Design\"\n        },\n        {\n            \"_id\": \"67515531115ee1647aef6148\",\n            \"hobbie_name\": \"Home Brewing\"\n        },\n        {\n            \"_id\": \"67515903115ee1647aef6151\",\n            \"hobbie_name\": \"Mixology\"\n        },\n        {\n            \"_id\": \"67515bbb115ee1647aef615a\",\n            \"hobbie_name\": \"Bird Breeding\"\n        },\n        {\n            \"_id\": \"67515e30115ee1647aef6163\",\n            \"hobbie_name\": \"Dog Training\"\n        },\n        {\n            \"_id\": \"67515ec4115ee1647aef616c\",\n            \"hobbie_name\": \"Horseback Riding\"\n        },\n        {\n            \"_id\": \"67515f7a115ee1647aef6175\",\n            \"hobbie_name\": \"Collecting Antiques\"\n        },\n        {\n            \"_id\": \"67516026115ee1647aef617e\",\n            \"hobbie_name\": \"Bonsai Tree Cultivation\"\n        },\n        {\n            \"_id\": \"675173df115ee1647aef6187\",\n            \"hobbie_name\": \"Magic Tricks\"\n        },\n        {\n            \"_id\": \"675177ae115ee1647aef6190\",\n            \"hobbie_name\": \"Ice Skating\"\n        },\n        {\n            \"_id\": \"6751794c115ee1647aef619b\",\n            \"hobbie_name\": \"Skiing\"\n        },\n        {\n            \"_id\": \"67517994115ee1647aef61a4\",\n            \"hobbie_name\": \"Snowboarding\"\n        },\n        {\n            \"_id\": \"675179bb115ee1647aef61ad\",\n            \"hobbie_name\": \"Whittling\"\n        },\n        {\n            \"_id\": \"675187d6115ee1647aef61b6\",\n            \"hobbie_name\": \"Model Building (e.g., Cars, Planes)\"\n        },\n        {\n            \"_id\": \"675187f3115ee1647aef61bf\",\n            \"hobbie_name\": \"Robotics\"\n        },\n        {\n            \"_id\": \"67518811115ee1647aef61c8\",\n            \"hobbie_name\": \"Coding/Programming\"\n        },\n        {\n            \"_id\": \"6751882e115ee1647aef61d1\",\n            \"hobbie_name\": \"Home Improvement\"\n        },\n        {\n            \"_id\": \"67518849115ee1647aef61da\",\n            \"hobbie_name\": \"Auto Restoration\"\n        },\n        {\n            \"_id\": \"67518865115ee1647aef61e3\",\n            \"hobbie_name\": \"Fantasy Sports\"\n        },\n        {\n            \"_id\": \"67518890115ee1647aef61ec\",\n            \"hobbie_name\": \"Scuba Diving\"\n        },\n        {\n            \"_id\": \"67518c6f115ee1647aef61f5\",\n            \"hobbie_name\": \"Snorkeling\"\n        },\n        {\n            \"_id\": \"67518c92115ee1647aef61fe\",\n            \"hobbie_name\": \"Free Diving\"\n        },\n        {\n            \"_id\": \"67518cb2115ee1647aef6207\",\n            \"hobbie_name\": \"Drones\"\n        },\n        {\n            \"_id\": \"67518ccf115ee1647aef6210\",\n            \"hobbie_name\": \"Kite Flying\"\n        },\n        {\n            \"_id\": \"67518d14115ee1647aef621b\",\n            \"hobbie_name\": \"Plant Care and Propagation\"\n        },\n        {\n            \"_id\": \"67518d3f115ee1647aef6224\",\n            \"hobbie_name\": \"Tarot Reading\"\n        },\n        {\n            \"_id\": \"67518d5d115ee1647aef622d\",\n            \"hobbie_name\": \"Astrology\"\n        },\n        {\n            \"_id\": \"67518d7a115ee1647aef6236\",\n            \"hobbie_name\": \"Making Music (e.g., Digital Production)\"\n        },\n        {\n            \"_id\": \"67518da3115ee1647aef623f\",\n            \"hobbie_name\": \"Fire Dancing\"\n        },\n        {\n            \"_id\": \"67518de3115ee1647aef6248\",\n            \"hobbie_name\": \"Storytelling\"\n        },\n        {\n            \"_id\": \"67518e10115ee1647aef6251\",\n            \"hobbie_name\": \"Journaling\"\n        },\n        {\n            \"_id\": \"67518e2e115ee1647aef625a\",\n            \"hobbie_name\": \"Learning Magic Tricks\"\n        },\n        {\n            \"_id\": \"67518e4d115ee1647aef6263\",\n            \"hobbie_name\": \"Pet Training\"\n        },\n        {\n            \"_id\": \"67518e69115ee1647aef626c\",\n            \"hobbie_name\": \"Geology/Fossil Hunting\"\n        },\n        {\n            \"_id\": \"67518ea8115ee1647aef6275\",\n            \"hobbie_name\": \"Wine Tasting\"\n        },\n        {\n            \"_id\": \"67518ed0115ee1647aef627f\",\n            \"hobbie_name\": \"Stamp Collecting\"\n        },\n        {\n            \"_id\": \"67518f15115ee1647aef6289\",\n            \"hobbie_name\": \"Comic Book Collecting\"\n        },\n        {\n            \"_id\": \"67518f75115ee1647aef6293\",\n            \"hobbie_name\": \"Shopping (Bargain Hunting, Couponing)\"\n        },\n        {\n            \"_id\": \"67519069115ee1647aef629c\",\n            \"hobbie_name\": \"Watching Documentaries\"\n        },\n        {\n            \"_id\": \"675190e6115ee1647aef62a6\",\n            \"hobbie_name\": \"Taking Online Courses (e.g., Coursera, Skillshare)\"\n        },\n        {\n            \"_id\": \"67519193115ee1647aef62af\",\n            \"hobbie_name\": \"Studying Mythology\"\n        },\n        {\n            \"_id\": \"67519206115ee1647aef62b8\",\n            \"hobbie_name\": \"Digital Content Creation\"\n        },\n        {\n            \"_id\": \"67519247115ee1647aef62c1\",\n            \"hobbie_name\": \"Music Production\"\n        },\n        {\n            \"_id\": \"67519927115ee1647aef62ca\",\n            \"hobbie_name\": \"Fashion and Thrifting\"\n        },\n        {\n            \"_id\": \"675199ab115ee1647aef62d3\",\n            \"hobbie_name\": \"Sustainable Living\"\n        },\n        {\n            \"_id\": \"675199fe115ee1647aef62dc\",\n            \"hobbie_name\": \"Investing\"\n        },\n        {\n            \"_id\": \"67519a28115ee1647aef62e5\",\n            \"hobbie_name\": \"E-Sports\"\n        },\n        {\n            \"_id\": \"67519a63115ee1647aef62ee\",\n            \"hobbie_name\": \"Freelance\"\n        },\n        {\n            \"_id\": \"67519a86115ee1647aef62f7\",\n            \"hobbie_name\": \"Leadership Development\"\n        },\n        {\n            \"_id\": \"67519aeb115ee1647aef6300\",\n            \"hobbie_name\": \"ROTC\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get-Subjects",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/api/services/get-subjects"
+					},
+					"response": [
+						{
+							"name": "Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{URL}}/api/services/get-subjects"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2279"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8e7-ezPEHeG7Jr2avIkk+08fsW6Ds7A\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 17 Dec 2024 14:04:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"67519fd6f3287cfb172114fa\",\n            \"subject_name\": \"Math\"\n        },\n        {\n            \"_id\": \"6751a041f3287cfb17211503\",\n            \"subject_name\": \"English\"\n        },\n        {\n            \"_id\": \"6751a069f3287cfb1721150c\",\n            \"subject_name\": \"Science\"\n        },\n        {\n            \"_id\": \"6751a096f3287cfb17211515\",\n            \"subject_name\": \"Social Studies\"\n        },\n        {\n            \"_id\": \"6751a0c8f3287cfb1721151e\",\n            \"subject_name\": \"Foreign Language\"\n        },\n        {\n            \"_id\": \"6751afdcf3287cfb1721152d\",\n            \"subject_name\": \"Home Economics\"\n        },\n        {\n            \"_id\": \"6751b008f3287cfb17211536\",\n            \"subject_name\": \"Art\"\n        },\n        {\n            \"_id\": \"6751b0d6f3287cfb1721153f\",\n            \"subject_name\": \"Music\"\n        },\n        {\n            \"_id\": \"6751b11df3287cfb17211548\",\n            \"subject_name\": \"Computer Science\"\n        },\n        {\n            \"_id\": \"6751b1b0f3287cfb17211551\",\n            \"subject_name\": \"Health Education\"\n        },\n        {\n            \"_id\": \"6751b212f3287cfb1721155a\",\n            \"subject_name\": \"Business/Entrepreneurship\"\n        },\n        {\n            \"_id\": \"6751b270f3287cfb17211563\",\n            \"subject_name\": \"Psychology\"\n        },\n        {\n            \"_id\": \"6751c1d2f3287cfb1721156c\",\n            \"subject_name\": \"IB Courses\"\n        },\n        {\n            \"_id\": \"6751c27bf3287cfb17211575\",\n            \"subject_name\": \"Philosophy\"\n        },\n        {\n            \"_id\": \"6751c2b0f3287cfb1721157e\",\n            \"subject_name\": \"Agriculture\"\n        },\n        {\n            \"_id\": \"6751c2d9f3287cfb17211587\",\n            \"subject_name\": \"Engineering\"\n        },\n        {\n            \"_id\": \"6751c30bf3287cfb17211590\",\n            \"subject_name\": \"Physical Education (PE)\"\n        },\n        {\n            \"_id\": \"6751c334f3287cfb17211599\",\n            \"subject_name\": \"Astronomy\"\n        },\n        {\n            \"_id\": \"6751c357f3287cfb172115a2\",\n            \"subject_name\": \"Geography\"\n        },\n        {\n            \"_id\": \"6751c37bf3287cfb172115ab\",\n            \"subject_name\": \"Geology\"\n        },\n        {\n            \"_id\": \"6751c3b5f3287cfb172115b4\",\n            \"subject_name\": \"History\"\n        },\n        {\n            \"_id\": \"6751c3e9f3287cfb172115bd\",\n            \"subject_name\": \"Politics/Government\"\n        },\n        {\n            \"_id\": \"6751c432f3287cfb172115c6\",\n            \"subject_name\": \"Finance\"\n        },\n        {\n            \"_id\": \"6751c674f3287cfb172115cf\",\n            \"subject_name\": \"Biology\"\n        },\n        {\n            \"_id\": \"6751c6dbf3287cfb172115d8\",\n            \"subject_name\": \"Chemistry\"\n        },\n        {\n            \"_id\": \"6751cb01f3287cfb172115e1\",\n            \"subject_name\": \"Physics\"\n        },\n        {\n            \"_id\": \"6752a509f3287cfb172115ea\",\n            \"subject_name\": \"Theater\"\n        },\n        {\n            \"_id\": \"6752a71ef3287cfb172115f3\",\n            \"subject_name\": \"Language Arts\"\n        },\n        {\n            \"_id\": \"6752a837f3287cfb172115fc\",\n            \"subject_name\": \"Journalism/Writing\"\n        },\n        {\n            \"_id\": \"6752aaedf3287cfb17211605\",\n            \"subject_name\": \"Marketing\"\n        },\n        {\n            \"_id\": \"6752adabf3287cfb1721160e\",\n            \"subject_name\": \"Debate\"\n        },\n        {\n            \"_id\": \"6752ae15f3287cfb17211617\",\n            \"subject_name\": \"Library Science\"\n        },\n        {\n            \"_id\": \"6752e3cdf3287cfb17211620\",\n            \"subject_name\": \"Accounting\"\n        },\n        {\n            \"_id\": \"6752e436f3287cfb17211629\",\n            \"subject_name\": \"Family and Consumer Science\"\n        },\n        {\n            \"_id\": \"6752e581f3287cfb17211632\",\n            \"subject_name\": \"Trade-Based\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Set-Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profile_img",
+									"type": "file",
+									"src": "/C:/Users/Sufyan Malik/Downloads/image (7).png"
+								},
+								{
+									"key": "state",
+									"value": "New york",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "KHI",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "KHI",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{URL}}/api/user/set-profile"
+					},
+					"response": []
+				},
+				{
+					"name": "Complete-Registration-Questions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"current_grade_level\" : \"Middle School\",\r\n    \"major_trade_or_military\" : \"Accounting\",\r\n    \"highest_degree_completion\" : \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\",\r\n    \"is_eighteen_or_older\" : true,\r\n    \"has_military_service\" : true,\r\n    \"branch_of_service\" : \"674733b5f137f1039e5cd3bb\", // required if has_military_service true\r\n    \"rank\" : \"67481d8327ea2af7ce706746\", // required if has_military_service true,\r\n    \"is_athlete\" : false,\r\n    \"primary_sport\" : \"674adbee2763b173dbbc5d1b\", // required if is_athlete true,\r\n    \"sport_position\" : \"674b6ca6fa94325108e95e45\", // required if is_athlete true,\r\n    \"favorite_hobby1\" : \"67504bacbcb07c8d06053129\",\r\n    \"favorite_hobby2\" : \"67504d75da35191c001f37e2\",\r\n    \"favorite_middle_school_subject\" : \"6751a069f3287cfb1721150c\",\r\n    \"has_job_experience\" : true,\r\n    \"recent_job_title\" : \"Software Engineer\", // required if has_job_experience true\r\n    \"desired_career_path\" : \"Lorem Ipsum is simply dummy text of the printing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/user/complete-registration-questions"
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/api/services/add-new-rank",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serviceId\": \"67481471f137f1039e5cd3d1\",\r\n    \"rank_name\": \"Fleet Admiral (O-10)\",\r\n    \"topics\": [\r\n        {\r\n            \"title\": \"Global Leadership and Strategy\",\r\n            \"description\": \"Fleet Admirals oversee the Navy's entire global strategy and operations. This experience is transferable to the highest leadership roles in multinational corporations, where strategic oversight across borders is essential.\"\r\n        },\r\n        {\r\n            \"title\": \"Crisis Management at the Highest Level\",\r\n            \"description\": \"They manage the Navy's response to major global crises. This skill is critical in high-level roles in emergency management, international relations, and top executive positions in large, complex organizations.\"\r\n        },\r\n        {\r\n            \"title\": \"Cross-Functional Leadership\",\r\n            \"description\": \"Fleet Admirals lead in areas that require coordination across diverse operational and functional domains. In the civilian world, this skill is useful for executive roles where managing multiple departments, such as marketing, finance, and operations, is required.\"\r\n        },\r\n        {\r\n            \"title\": \"Global Negotiation and Diplomacy\",\r\n            \"description\": \"Fleet Admirals negotiate and collaborate with international leaders. These diplomatic skills are highly transferable to senior roles in international business, government negotiations, and corporate strategy.\"\r\n        },\r\n        {\r\n            \"title\": \"Leadership in Uncertain Environments\",\r\n            \"description\": \"They make decisions in highly unpredictable situations, which is an invaluable skill for C-suite executives in industries like technology, finance, and healthcare, where uncertainty and rapid change are constant.\"\r\n        }\r\n    ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/services/add-new-rank"
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/api/services/add-new-sport",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sport_name\" : \"Wrestling1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/services/add-new-sport"
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/api/services/add-new-sport-position",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"position_name\": \"Individual Competitor (Solo Wrestler)\",\r\n  \"sportId\": \"674b622d2763b173dbbc5d71\",\r\n  \"topics\": [\r\n    {\r\n      \"title\": \"Self-Motivation and Goal Orientation\",\r\n      \"description\": \"Solo wrestlers set personal goals and stay motivated to achieve them. Self-motivation is essential in independent roles, like freelancing, remote work, or entrepreneurship.\"\r\n    },\r\n    {\r\n      \"title\": \"Self-Discipline and Accountability\",\r\n      \"description\": \"Solo wrestlers are responsible for their own training and performance. Self-discipline and accountability are key in roles where self-management and quality control are necessary, like consulting or freelancing.\"\r\n    },\r\n    {\r\n      \"title\": \"Adaptability to Different Opponents\",\r\n      \"description\": \"Solo wrestlers face a wide range of opponents, requiring adaptation. Adaptability is valuable in client-based roles, where adjusting to different needs and preferences is essential.\"\r\n    },\r\n    {\r\n      \"title\": \"Focus on Continuous Improvement\",\r\n      \"description\": \"Solo wrestlers analyze their own performance to improve. Continuous improvement is valuable in careers that require personal growth, like sales, tech, or research.\"\r\n    },\r\n    {\r\n      \"title\": \"Stress Management and Emotional Control\",\r\n      \"description\": \"Solo wrestlers handle the pressure of individual competition. Stress management is important in high-stakes roles, like project management or healthcare, where calmness under pressure is crucial.\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/services/add-new-sport-position"
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/api/services/add-new-subject",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"subject_name\": \"Trade-Based\",\r\n  \"topics\": [\r\n    {\r\n      \"title\": \"Technical Skills and Expertise\",\r\n      \"description\": \"Trade programs often involve hands-on training in specific technical skills, such as electrical work, plumbing, carpentry, or welding. These skills are highly transferable to roles in construction, manufacturing, repair, and maintenance industries. Employees with technical expertise can perform specialized tasks, troubleshoot issues, and ensure the proper installation, repair, and maintenance of equipment or infrastructure. These skills are in high demand across various sectors, such as construction, automotive, HVAC (heating, ventilation, and air conditioning), and renewable energy.\"\r\n    },\r\n    {\r\n      \"title\": \"Problem-Solving and Troubleshooting\",\r\n      \"description\": \"In trade fields, workers are often faced with complex challenges that require quick thinking and effective problem-solving. These problem-solving and troubleshooting skills are transferable to industries where operational efficiency and quick resolutions are crucial, such as in manufacturing, tech support, and logistics. Professionals who can identify problems, evaluate solutions, and implement fixes help minimize downtime, reduce costs, and keep systems or equipment functioning smoothly in fields like construction, electronics, and engineering.\"\r\n    },\r\n    {\r\n      \"title\": \"Attention to Detail and Precision\",\r\n      \"description\": \"Many trade jobs require a high degree of precision and attention to detail, whether it's measuring materials, following blueprints, or ensuring installations meet safety and quality standards. This attention to detail is transferable to roles in quality control, design, production, and safety management. Employees with strong attention to detail can ensure that projects are completed to the highest standard, reducing errors, improving quality, and ensuring compliance with regulations in industries such as manufacturing, engineering, and design.\"\r\n    },\r\n    {\r\n      \"title\": \"Time Management and Efficiency\",\r\n      \"description\": \"Trade professionals often work under tight deadlines and are responsible for managing their time to complete projects on schedule. This time management skill is transferable to project management, logistics, and operations roles, where efficiency and meeting deadlines are key. Employees who excel in time management can prioritize tasks, stay organized, and complete projects on time, which is essential for maintaining productivity and client satisfaction in fields like construction, production, and service delivery.\"\r\n    },\r\n    {\r\n      \"title\": \"Communication and Teamwork\",\r\n      \"description\": \"While trade work often involves individual tasks, it also requires collaboration with other workers, clients, and stakeholders. Communication and teamwork skills are developed when coordinating tasks, sharing information, and working together to complete a project. These skills are transferable to any industry that requires cooperation, such as construction, manufacturing, healthcare, and customer service. Professionals with strong communication and teamwork abilities can work effectively with diverse teams, ensure that everyone is on the same page, and contribute to a positive and productive work environment.\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/services/add-new-subject"
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/api/services/add-new-hobby",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"hobbie_name\": \"ROTC\",\r\n  \"topics\": [\r\n    {\r\n      \"title\": \"Leadership\",\r\n      \"description\": \"From managing small groups to leading larger teams, ROTC cadets and officers develop strong leadership capabilities, which are essential in virtually any civilian career, particularly in managerial or executive roles.\"\r\n    },\r\n    {\r\n      \"title\": \"Discipline\",\r\n      \"description\": \"The discipline instilled through ROTC training is useful in any professional setting, where the ability to maintain focus, meet deadlines, and consistently perform is highly valued.\"\r\n    },\r\n    {\r\n      \"title\": \"Teamwork\",\r\n      \"description\": \"ROTC emphasizes working effectively within teams, an essential skill in industries ranging from healthcare to finance, where collaboration is often the key to success.\"\r\n    },\r\n    {\r\n      \"title\": \"Problem-Solving and Critical Thinking\",\r\n      \"description\": \"Cadets are constantly asked to think on their feet, making quick decisions in complex situations. These problem-solving skills are invaluable in fast-paced industries like tech, customer service, and logistics.\"\r\n    },\r\n    {\r\n      \"title\": \"Adaptability and Resilience\",\r\n      \"description\": \"The demanding nature of ROTC teaches adaptability and resilience, skills crucial in navigating change, overcoming challenges, and thriving in dynamic work environments such as tech startups, healthcare, and consulting.\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/services/add-new-hobby"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Store-Device-Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"deviceToken\": \"cwecewc1e1d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/user/store-device-token"
+					},
+					"response": []
+				},
+				{
+					"name": "My-Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/api/user/my-profile"
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Registration-Questions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/api/user/get-registration-questions"
+					},
+					"response": []
+				},
+				{
+					"name": "Update-Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Sufyan Malik",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "washington",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Khi",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "Lahore",
+									"type": "text"
+								},
+								{
+									"key": "profile_img",
+									"type": "file",
+									"src": "/C:/Users/Sufyan Malik/Downloads/App Icon.png"
+								}
+							]
+						},
+						"url": "{{URL}}/api/user/update-profile"
+					},
+					"response": []
+				},
+				{
+					"name": "Change-Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"current_password\" : \"Asdf123$#\",\r\n    \"new_password\" : \"Asdf123$\",\r\n    \"confirm_password\" : \"Asdf123$\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/user/change-password"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"url": "{{URL}}/api/user/logout"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete-Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{URL}}/api/user/delete-account"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Subscription",
+			"item": [
+				{
+					"name": "Create-Subscription-Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_name\" : \"yearly-plan\",\r\n    \"price\" : 59.99,\r\n    \"subscription_duration\" : \"yearly\",\r\n    \"description\" : \r\n        {\r\n            \"feature1\" : \"Discover Your Transferable Skills\",\r\n            \"feature2\" : \"Find Your Career Match\",\r\n            \"feature3\" : \"Find Your Career Match\",\r\n            \"feature4\" : \"Find Your Career Match\",\r\n            \"feature5\" : \"Establish Clear and Actionable Goals\",\r\n            \"feature6\" : \"View Success Stories\",\r\n            \"feature7\" : \"Unlimited Access to platform for 365 days\",\r\n            \"feature8\" : \"Unlimited retakes on Career Recommendation Assessments\",\r\n            \"feature9\" : \"Create a year long strategic plan\"\r\n        }\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/subscription/create-subscription-product"
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Subscription-Products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/api/subscription/subscription-products"
+					},
+					"response": [
+						{
+							"name": "Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{URL}}/api/subscription/subscription-products"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "947"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b3-BLSj2BaB4qSN3NpaaUzZ92Oj9lA\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2024 14:03:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"675aea9659f857fd267e7a2f\",\n            \"product_name\": \"quarterly-plan\",\n            \"description\": {\n                \"feature1\": \"Discover Your Transferable Skills\",\n                \"feature2\": \"Find Your Career Match\",\n                \"feature3\": \"Find Your Career Match\",\n                \"feature4\": \"Find Your Career Match\",\n                \"feature5\": \"Establish Clear and Actionable Goals\",\n                \"feature6\": \"View Success Stories\"\n            },\n            \"price\": 19.99,\n            \"subscription_duration\": \"3-month\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"675aeb3d6d2a2d1848b9872f\",\n            \"product_name\": \"yearly-plan\",\n            \"description\": {\n                \"feature1\": \"Discover Your Transferable Skills\",\n                \"feature2\": \"Find Your Career Match\",\n                \"feature3\": \"Find Your Career Match\",\n                \"feature4\": \"Find Your Career Match\",\n                \"feature5\": \"Establish Clear and Actionable Goals\",\n                \"feature6\": \"View Success Stories\",\n                \"feature7\": \"Unlimited Access to platform for 365 days\",\n                \"feature8\": \"Unlimited retakes on Career Recommendation Assessments\",\n                \"feature9\": \"Create a year long strategic plan\"\n            },\n            \"price\": 59.99,\n            \"subscription_duration\": \"yearly\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create-Subscription-Intent",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\" : \"675aea9659f857fd267e7a2f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/subscription/create-subscription-intent"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify-Subscription",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"product_id\" : \"675aea9659f857fd267e7a2f\",\r\n     \"stripeSubscriptionId\": \"sub_1QWdBwLEhw98V0towvXFHc0B\",\r\n     \"paymentIntentId\": \"pi_3QWdBxLEhw98V0to0P6KadxU\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/subscription/verify-subscription"
+					},
+					"response": []
+				},
+				{
+					"name": "My-Subscription-Plan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/api/subscription/my-subscription-plan"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transferable Skills",
+			"item": [
+				{
+					"name": "My-Transferable-Skills",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/api/user/my-transferable-skills"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
