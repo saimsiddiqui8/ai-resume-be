@@ -23,18 +23,18 @@ const usersignUp = async (req, res) => {
     return res.status(400).json({ success: false, message: error.details[0].message });
   }
 
-  const { name, email, phone = "", password, idToken } = req.body;
+  const { name, email, phone = "", password } = req.body;
   const otpCode = generateOTP();
 
   try {
     // Verify Firebase ID token
-    const tokenResult = await verifyFirebaseToken(idToken);
-    if (!tokenResult.success) {
-      return res.status(401).json({ success: false, error: tokenResult.errorMessage });
-    }
+    // const tokenResult = await verifyFirebaseToken(idToken);
+    // if (!tokenResult.success) {
+    //   return res.status(401).json({ success: false, error: tokenResult.errorMessage });
+    // }
 
-    const { uid } = tokenResult;
-    console.log("uid===", uid);
+    // const { uid } = tokenResult;
+    // console.log("uid===", uid);
     
     // Check if the email exists in the user collection
     const existingUser = await User.findOne({ email: email.toLowerCase() });
@@ -52,7 +52,7 @@ const usersignUp = async (req, res) => {
         user.phone = phone;
         user.password = await bcrypt.hash(password, 10);
         // user.is_active=true
-         user.uid = uid; // Update Firebase UID
+     // user.uid = uid; // Update Firebase UID
         await user.save();
 
         // Handle OTP and sending email/SMS for re-activation
@@ -80,7 +80,7 @@ const usersignUp = async (req, res) => {
         password: hashedPassword,
         stripe_customer_id: stripeCustomerId,
         // is_active:true
-        uid, // Save Firebase UID
+       // uid, // Save Firebase UID
       });
 
       // Create OTP and send notifications

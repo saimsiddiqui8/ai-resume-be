@@ -8,7 +8,7 @@ import { authMiddlewareUser } from "../middlewares/authMiddlewareUser.js";
 import { getRegistrationQuestions, registrationQuestions } from "../controllers/registration-question/registration-questions-controller.js";
 import { getTransferableSkills } from "../controllers/transferable-skills/transferable-skills.controller.js";
 import { getUserTransferableSkills, toggleTransferableSkill } from "../controllers/my-library/my-library.controller.js";
-const upload = createMulter("./uploads/pictures/");
+const upload = createMulter();
 const router = Router();
 
 

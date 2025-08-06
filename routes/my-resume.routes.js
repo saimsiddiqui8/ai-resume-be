@@ -4,7 +4,7 @@ import { createMulter } from "../utils/Multer/createMulter.js";
 import { authMiddlewareUser } from "../middlewares/authMiddlewareUser.js";
 import { addSupportPeople, createResume, deleteResume, getMyResumes, resumeDetail, sendToEmail, updateResume } from "../controllers/resume/resume.controller.js";
 import { subscriptionMiddlewareUser } from "../middlewares/subscriptionMiddlewareUser.js";
-const upload = createMulter("./uploads/pictures/");
+const upload = createMulter();
 const router = Router();
 
 

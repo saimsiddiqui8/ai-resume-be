@@ -6,7 +6,7 @@ import { subscriptionMiddlewareUser } from "../middlewares/subscriptionMiddlewar
 import { addSupportPeople, getMyIDPAward, IDPQuestions, sendIDPForm, submitIDPForm, updateIDPAnswer } from "../controllers/idp-form/idp-form-controller.js";
 import { createMulter } from "../utils/Multer/createMulter.js";
 const router = Router();
-const upload = createMulter("./uploads/pictures/");
+const upload = createMulter();
 
 
 

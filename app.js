@@ -69,13 +69,13 @@ const fileFilter = (req, file, cb) => {
 };
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __dirname = path.dirname(__filename);
 
 // Create the uploads directory if it doesn't exist
-const uploadsDir = path.join(__dirname, 'uploads/pictures');
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
-}
+// const uploadsDir = path.join(__dirname, 'uploads/pictures');
+// if (!fs.existsSync(uploadsDir)) {
+//   fs.mkdirSync(uploadsDir, { recursive: true });
+// }
 
 app.use(cors(corsOptions))
 // route checking

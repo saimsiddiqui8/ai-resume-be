@@ -11,7 +11,7 @@ import { deleteNotification, markNotificationsAsRead, myNotifications, myNotific
 import { chatWithBot } from "../controllers/chatbot/chatbot.controller.js";
 import { subscriptionMiddlewareUser } from "../middlewares/subscriptionMiddlewareUser.js";
 import { careerRecommendationById, changePassword, filterAndSearchUsers,  getAdminNotifications, getMonthlySubscriptionSales, getStates, getTransferableSkills, getUsers, goalDetails,  sendNotificationAdmin, userCareerRecommendations, userGoals, userResumes } from "../controllers/admin/admin-controller.js";
-const upload = createMulter("./uploads/pictures/");
+const upload = createMulter();
 const router = Router();
 
 // profile

@@ -11,7 +11,7 @@ import { cancelSubscription, createStripePromotionCode, createSubscriptionCoupon
 import { SubscriptionWebhook } from "../controllers/subscription/webhook/stripe-webhook-controller.js";
 import { verifyAccessCode } from "../controllers/access-code/access-code.controller.js";
 import { subscriptionNotification, subscriptionNotificationIOS, verifyUserPayment, verifyUserPaymentIOS } from "../controllers/in-app-purchases/subscription-purchase.controller.js";
-const upload = createMulter("./uploads/pictures/");
+const upload = createMulter();
 const router = Router();
 
 

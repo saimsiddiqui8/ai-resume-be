@@ -6,7 +6,7 @@ import { addSupportPeople, createResume, deleteResume, getMyResumes, updateResum
 import { allSuccessStory, createSuccessStoryProfile, deleteSuccessStory, updateSuccessStory } from "../controllers/success-story/success-story.controller.js";
 import { addQuestion, addCareer, addAnswer, getAllAnswer, updateCareer, addIDPQuestion } from "../controllers/career-recommendations/career-recommendations-data.controller.js";
 import { generateAccessCode, getAllAccessCodes } from "../controllers/access-code/access-code.controller.js";
-const upload = createMulter("./uploads/pictures/");
+const upload = createMulter();
 const router = Router();
 
 

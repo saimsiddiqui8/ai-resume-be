@@ -11,7 +11,7 @@ import { addSupportPeopleGoal, changeGoalStatus, createGoal, deleteGoal, goalDet
 import { deleteNotification, markNotificationsAsRead, myNotifications, myNotificationSetting, toggleNotification } from "../controllers/notifications/notification.controller.js";
 import { chatWithBot } from "../controllers/chatbot/chatbot.controller.js";
 import { subscriptionMiddlewareUser } from "../middlewares/subscriptionMiddlewareUser.js";
-const upload = createMulter("./uploads/pictures/");
+const upload = createMulter();
 const router = Router();
 
 
