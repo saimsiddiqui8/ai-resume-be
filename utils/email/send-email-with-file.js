@@ -15,7 +15,7 @@ export const transporter = nodemailer.createTransport({
 });
 
 // Function to send email with attachment using SendGrid
-export const sendEmailWithAttachment = async (to, subject, text, filePath, fileName) => {
+const sendEmailWithAttachment = async (to, subject, text, filePath, fileName) => {
   const absoluteFilePath = path.resolve(filePath);
 
   const mailOptions = {
