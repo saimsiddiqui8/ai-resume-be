@@ -35,7 +35,7 @@ const usersignUp = async (req, res) => {
 
     // const { uid } = tokenResult;
     // console.log("uid===", uid);
-    
+
     // Check if the email exists in the user collection
     const existingUser = await User.findOne({ email: email.toLowerCase() });
 
@@ -52,7 +52,7 @@ const usersignUp = async (req, res) => {
         user.phone = phone;
         user.password = await bcrypt.hash(password, 10);
         // user.is_active=true
-     // user.uid = uid; // Update Firebase UID
+        // user.uid = uid; // Update Firebase UID
         await user.save();
 
         // Handle OTP and sending email/SMS for re-activation
@@ -61,12 +61,12 @@ const usersignUp = async (req, res) => {
           { otp: otpCode, time: Date.now() },
           { upsert: true, new: true }
         );
+        console.log(otpCode);
         await sendEmail(email, name, otpCode);
-      const token = signToken(user._id);
+        const token = signToken(user._id);
         console.log("user====", user);
-        
 
-        return res.status(200).json({ success: true, message: 'User reactivated successfully!', /* token */ });
+        return res.status(200).json({ success: true, message: `${otpCode} User reactivated successfully!` , /* token */ });
       }
     } else {
       // If no user exists, proceed with account creation
@@ -80,7 +80,7 @@ const usersignUp = async (req, res) => {
         password: hashedPassword,
         stripe_customer_id: stripeCustomerId,
         // is_active:true
-       // uid, // Save Firebase UID
+        // uid, // Save Firebase UID
       });
 
       // Create OTP and send notifications
@@ -89,11 +89,11 @@ const usersignUp = async (req, res) => {
         { otp: otpCode, time: Date.now() },
         { upsert: true, new: true }
       );
-      await sendEmail(email, name, otpCode);
+      // await sendEmail(email, name, otpCode);
       const token = signToken(user._id);
+      console.log("user====", otpCode);
 
-
-      return res.status(201).json({ success: true, message: 'User registered successfully!', /* token */ });
+      return res.status(201).json({ success: true, message: `${otpCode} User registered successfully!`, /* token */ });
     }
   } catch (err) {
     console.error(err);
@@ -111,16 +111,16 @@ const checkFirebaseUser = async (req, res) => {
   }
   try {
     const { email } = req.body;
-    const user = await User.findOne({email});
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(200).json({
         success: true,
-       message: "User does not exist"
+        message: "User does not exist"
       });
     }
     if (user && !user.is_active) {
-      await admin.auth().deleteUser(user.uid);
-      await User.findOneAndUpdate({email}, {email: ""})
+      // await admin.auth().deleteUser(user.uid);
+      await User.findOneAndUpdate({ email }, { email: "" })
     }
     return res.status(200).json({
       success: true,
@@ -136,10 +136,10 @@ const checkFirebaseUser = async (req, res) => {
 const verifyOTP = async (req, res) => {
   try {
     const { error } = verifyOTPSchema.validate(req.body);
-  if (error) {
-    return res.status(400).json({ success: false, error: error.details[0].message });
-  }
-    const { email, otp, phone , type} = req.body;
+    if (error) {
+      return res.status(400).json({ success: false, error: error.details[0].message });
+    }
+    const { email, otp, phone, type } = req.body;
 
     const otpRecord = await OTP.findOne({ email });
 
@@ -180,7 +180,7 @@ const verifyOTP = async (req, res) => {
     // }
     if (type === "signup") {
       const token = signToken(user._id);
-      await User.findOneAndUpdate({email: user.email}, {is_active:true})
+      await User.findOneAndUpdate({ email: user.email }, { is_active: true })
 
       return res.status(200).json({
         success: true,
@@ -193,7 +193,7 @@ const verifyOTP = async (req, res) => {
     }
     return res
       .status(200)
-      .json({ success: true, message: "OTP verified successfully"});
+      .json({ success: true, message: "OTP verified successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
@@ -203,18 +203,18 @@ const verifyOTP = async (req, res) => {
 const verifyOTPPhone = async (req, res) => {
   try {
     const { error } = verifyOTPPhoneSchema.validate(req.body);
-  if (error) {
-    return res.status(400).json({ success: false, error: error.details[0].message });
-  }
-    const { phone, otp} = req.body;
-  
+    if (error) {
+      return res.status(400).json({ success: false, error: error.details[0].message });
+    }
+    const { phone, otp } = req.body;
+
     const otpRecord = await OTPPhone.findOne({ phone });
 
     if (!otpRecord) {
       return res.status(400).json({ success: false, message: "OTP not found" });
     }
     // Fetch user based on role
-   
+
     const user = await User.findOne({ phone });
     if (!user) {
       return res.status(400).json({
@@ -236,10 +236,10 @@ const verifyOTPPhone = async (req, res) => {
       return res.status(400).json({ success: false, message: "Incorrect OTP" });
     }
     const token = signToken(user._id);
-    await User.findOneAndUpdate({email: user.email}, {is_active:true})
+    await User.findOneAndUpdate({ email: user.email }, { is_active: true })
     return res
       .status(200)
-      .json({ success: true, message: "OTP verified successfully", token: token});
+      .json({ success: true, message: "OTP verified successfully", token: token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
@@ -255,19 +255,19 @@ const otpRateLimiter = rateLimit({
 const resendOtpEmail = async (req, res) => {
   try {
     otpRateLimiter(req, res, async () => {
-    const { error, value } = resendOTPSchema.validate(req.body);
+      const { error, value } = resendOTPSchema.validate(req.body);
 
-    if (error) {
-      return res.status(400).json({
-        success: false,
-        message: error.details[0].message,
-      });
-    }
+      if (error) {
+        return res.status(400).json({
+          success: false,
+          message: error.details[0].message,
+        });
+      }
       const { email } = value;
 
       // Find the OTP record associated with the provided phone number
       let otpRecord = await OTP.findOne({ email });
-      
+
       // If OTP record doesn't exist, create a new one
       if (!otpRecord) {
         return res.status(400).json({ success: false, message: "User Not Found" });
@@ -275,24 +275,24 @@ const resendOtpEmail = async (req, res) => {
 
       // Check if the number of retries has reached the limit
       if (otpRecord.otp_retries >= 3) {
-          // Check if cooldown period has passed (10 minutes)
-          const currentTime = new Date();
-          const lastRetryTime = new Date(otpRecord.lastRetryTime);
-          const cooldownDuration = 10 * 60 * 1000; // 10 minutes in milliseconds
-          const timeDifference = currentTime - lastRetryTime;
+        // Check if cooldown period has passed (10 minutes)
+        const currentTime = new Date();
+        const lastRetryTime = new Date(otpRecord.lastRetryTime);
+        const cooldownDuration = 10 * 60 * 1000; // 10 minutes in milliseconds
+        const timeDifference = currentTime - lastRetryTime;
 
-          if (timeDifference < cooldownDuration) {
-              // Cooldown period has not passed, return error message
-              const remainingCooldown = cooldownDuration - timeDifference;
-              return res.status(400).json({
-                  success: false,
-                  message: `You have exceeded the maximum retry limit. Please wait for ${Math.floor(remainingCooldown / 60000)} minutes before retrying.`
-              });
-          } else {
-              // Cooldown period has passed, reset retry count and last retry time
-              otpRecord.otp_retries = 0;
-              otpRecord.lastRetryTime = null;
-          }
+        if (timeDifference < cooldownDuration) {
+          // Cooldown period has not passed, return error message
+          const remainingCooldown = cooldownDuration - timeDifference;
+          return res.status(400).json({
+            success: false,
+            message: `You have exceeded the maximum retry limit. Please wait for ${Math.floor(remainingCooldown / 60000)} minutes before retrying.`
+          });
+        } else {
+          // Cooldown period has passed, reset retry count and last retry time
+          otpRecord.otp_retries = 0;
+          otpRecord.lastRetryTime = null;
+        }
       }
 
       // Generate new OTP code
@@ -304,34 +304,34 @@ const resendOtpEmail = async (req, res) => {
       otpRecord.lastRetryTime = new Date();
       otpRecord.time = Date.now()
       await otpRecord.save();
-      const user = await User.findOne({email})
+      const user = await User.findOne({ email })
       if (!user) {
         return res.status(400).json({ success: false, message: "Account does not exist!" });
       }
       // Send SMS with OTP
-      await sendEmail(email,user.name, otpCode);
-      
+      await sendEmail(email, user.name, otpCode);
+
 
 
       res.status(200).json({ success: true, message: "OTP sent successfully" });
     });
   } catch (error) {
-      console.error(error);
-      res.status(500).json({ success: false, message: "Internal Server Error" });
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
 
 const resendOtpPhone = async (req, res) => {
   try {
     otpRateLimiter(req, res, async () => {
-    const { error, value } = resendOTPPhoneSchema.validate(req.body);
+      const { error, value } = resendOTPPhoneSchema.validate(req.body);
 
-    if (error) {
-      return res.status(400).json({
-        success: false,
-        message: error.details[0].message,
-      });
-    }
+      if (error) {
+        return res.status(400).json({
+          success: false,
+          message: error.details[0].message,
+        });
+      }
       const { phone } = value;
 
       // Find the OTP record associated with the provided phone number
@@ -344,24 +344,24 @@ const resendOtpPhone = async (req, res) => {
 
       // Check if the number of retries has reached the limit
       if (otpRecord.otp_retries >= 3) {
-          // Check if cooldown period has passed (10 minutes)
-          const currentTime = new Date();
-          const lastRetryTime = new Date(otpRecord.lastRetryTime);
-          const cooldownDuration = 10 * 60 * 1000; // 10 minutes in milliseconds
-          const timeDifference = currentTime - lastRetryTime;
+        // Check if cooldown period has passed (10 minutes)
+        const currentTime = new Date();
+        const lastRetryTime = new Date(otpRecord.lastRetryTime);
+        const cooldownDuration = 10 * 60 * 1000; // 10 minutes in milliseconds
+        const timeDifference = currentTime - lastRetryTime;
 
-          if (timeDifference < cooldownDuration) {
-              // Cooldown period has not passed, return error message
-              const remainingCooldown = cooldownDuration - timeDifference;
-              return res.status(400).json({
-                  success: false,
-                  message: `You have exceeded the maximum retry limit. Please wait for ${Math.floor(remainingCooldown / 60000)} minutes before retrying.`
-              });
-          } else {
-              // Cooldown period has passed, reset retry count and last retry time
-              otpRecord.otp_retries = 0;
-              otpRecord.lastRetryTime = null;
-          }
+        if (timeDifference < cooldownDuration) {
+          // Cooldown period has not passed, return error message
+          const remainingCooldown = cooldownDuration - timeDifference;
+          return res.status(400).json({
+            success: false,
+            message: `You have exceeded the maximum retry limit. Please wait for ${Math.floor(remainingCooldown / 60000)} minutes before retrying.`
+          });
+        } else {
+          // Cooldown period has passed, reset retry count and last retry time
+          otpRecord.otp_retries = 0;
+          otpRecord.lastRetryTime = null;
+        }
       }
 
       // Generate new OTP code
@@ -373,7 +373,7 @@ const resendOtpPhone = async (req, res) => {
       otpRecord.lastRetryTime = new Date();
       otpRecord.time = Date.now()
       await otpRecord.save();
-      const user = await User.findOne({phone})
+      const user = await User.findOne({ phone })
       if (!user) {
         return res.status(400).json({ success: false, message: "Account does not exist!" });
       }
@@ -383,8 +383,8 @@ const resendOtpPhone = async (req, res) => {
       res.status(200).json({ success: true, message: "OTP sent successfully" });
     });
   } catch (error) {
-      console.error(error);
-      res.status(500).json({ success: false, message: "Internal Server Error" });
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
 
@@ -516,10 +516,10 @@ const verifyRegisteredOtp = async (req, res) => {
 
     await PhoneRegister.deleteOne({ _id: phoneUpdate._id });
 
-    res.status(200).json({ success: true, message: "Phone number verified successfully!"});
+    res.status(200).json({ success: true, message: "Phone number verified successfully!" });
   } catch (error) {
     console.error("Error verifying phone update OTP:", error);
-    res.status(500).json({ success: false, message: "Internal Server Error"});
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
 
@@ -559,7 +559,7 @@ const login = async (req, res) => {
     // Create a token
     const token = signToken(user._id);
 
-    return res.status(200).json({ success: true, message: 'Login successful', is_subscription_paid : user.is_subscription_paid, is_profile_completed: user.is_profile_completed, is_registration_question_completed: user.is_registration_question_completed, email: email, name: user.name, phone:user.phone, token });
+    return res.status(200).json({ success: true, message: 'Login successful', is_subscription_paid: user.is_subscription_paid, is_profile_completed: user.is_profile_completed, is_registration_question_completed: user.is_registration_question_completed, email: email, name: user.name, phone: user.phone, token });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ success: false, message: 'Internal Server Error' });

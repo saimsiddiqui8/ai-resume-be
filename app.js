@@ -3,18 +3,18 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { dbConnect } from "./database/db-connect.js";
 import { router as authRouter } from "./routes/auth.routes.js";
-import { router as registrationQuestionsRouter } from "./routes/registration-questions.routes.js"; 
+import { router as registrationQuestionsRouter } from "./routes/registration-questions.routes.js";
 import { router as userRouter } from "./routes/user.routes.js";
-import { router as subscriptionRouter } from "./routes/subscription.routes.js"; 
-import {router as libraryRouter} from "./routes/my-library.routes.js"
-import {router as resumeRouter} from "./routes/my-resume.routes.js"
-import {router as successStoryRouter} from "./routes/success-story.routes.js"
-import {router as subscriptionWebhookRouter} from "./routes/subscription-webhook.routes.js"
-import {router as careerRecommendations} from "./routes/career-recommendations.routes.js"
-import {router as IDPFormRouter} from "./routes/idp-form.routes.js"
-import {router as adminAuthRouter} from "./routes/admin-auth.routes.js"
-import {router as adminRouter} from "./routes/admin.routes.js"
-import {} from './workers/crons/cron.js'
+import { router as subscriptionRouter } from "./routes/subscription.routes.js";
+import { router as libraryRouter } from "./routes/my-library.routes.js"
+import { router as resumeRouter } from "./routes/my-resume.routes.js"
+import { router as successStoryRouter } from "./routes/success-story.routes.js"
+import { router as subscriptionWebhookRouter } from "./routes/subscription-webhook.routes.js"
+import { router as careerRecommendations } from "./routes/career-recommendations.routes.js"
+import { router as IDPFormRouter } from "./routes/idp-form.routes.js"
+import { router as adminAuthRouter } from "./routes/admin-auth.routes.js"
+import { router as adminRouter } from "./routes/admin.routes.js"
+import { } from './workers/crons/cron.js'
 // import {router as webhookRouter} from './utils/Stripe/Webhooks/stripe-webhooks.js'
 // import { router as userPurchase } from "./Google-In-App-Purchase/routes/user-purchase.routes.js"; 
 // import { router as userChats } from "./Chats/routes/user-chat.routes.js"; 
@@ -37,20 +37,20 @@ const api = process.env.API_URL;
 app.use(timeout('5m')); // 5 minutes timeout
 
 app.use((req, res, next) => {
-    if (!req.timedout) next();
+  if (!req.timedout) next();
 });
 
 app.use((req, res, next) => {
   if (req.timedout) {
-      res.status(503).json({
-          success: false,
-          message: 'Request timed out.',
-      });
+    res.status(503).json({
+      success: false,
+      message: 'Request timed out.',
+    });
   } else {
-      next();
+    next();
   }
 });
-app.use(`${api}/subscription`,subscriptionWebhookRouter);
+app.use(`${api}/subscription`, subscriptionWebhookRouter);
 
 app.use(express.json({ limit: '15mb' }));
 const corsOptions = {
@@ -83,7 +83,7 @@ app.use((req, res, next) => {
   console.log(req.method, req.url);
   const userAgent = req.get('User-Agent') || '';
   let source = 'Unknown';
-  
+
   if (/mobile/i.test(userAgent)) {
     source = 'Mobile App';
   } else if (/Mozilla|Chrome|Safari|Firefox/i.test(userAgent)) {
@@ -97,13 +97,13 @@ app.use(`${api}/auth/admin`, adminAuthRouter);
 // // app.use(`${api}/auth/admin`, adminAuthRouter);
 app.use(`${api}/user`, userRouter);
 app.use(`${api}/services`, registrationQuestionsRouter);
-app.use(`${api}/subscription`,subscriptionRouter);
+app.use(`${api}/subscription`, subscriptionRouter);
 app.use(`${api}/user`, libraryRouter);
 app.use(`${api}/user`, resumeRouter);
 app.use(`${api}/user`, IDPFormRouter);
 app.use(`${api}/user`, careerRecommendations);
-app.use(`${api}/admin`,successStoryRouter);
-app.use(`${api}/admin`,adminRouter);
+app.use(`${api}/admin`, successStoryRouter);
+app.use(`${api}/admin`, adminRouter);
 // app.use(`${api}/`, userChats);
 
 
@@ -113,7 +113,7 @@ app.get("/test", (req, res) => {
 
 mongoose.set("strictQuery", false);
 
-app.listen(PORT, async() => {
+app.listen(PORT, "0.0.0.0" , async () => {
   console.log(`Server is running on PORT:${PORT}`);
   await dbConnect();
 });

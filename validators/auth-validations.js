@@ -21,7 +21,7 @@ const signUpSchema = Joi.object({
     confirm_password: Joi.string().valid(Joi.ref('password')).required().messages({
       'any.only': 'Passwords do not match'
     }),
-    idToken: Joi.string().required(),
+    idToken: Joi.string().optional(),
     
   });
   const verifyUserSchema = Joi.object({
