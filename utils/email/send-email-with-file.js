@@ -1,4 +1,4 @@
-import sgMail from '@sendgrid/mail';
+import nodemailer from 'nodemailer';
 import fs from 'fs';
 import dotenv from "dotenv";
 import path from "path";
