@@ -92,7 +92,7 @@ const registrationQuestions = async (req, res) => {
       { $set: transferableSkillsData },
       { upsert: true, new: true } // Create if not found, return updated document
     );
-    await User.findByIdAndUpdate(userId, {is_registration_question_completed : true})
+    await User.findByIdAndUpdate(userId, { is_registration_question_completed: true })
     return res.status(200).json({
       success: true,
       data: {
@@ -112,13 +112,13 @@ const getRegistrationQuestions = async (req, res) => {
 
     const registration = await RegistrationQuestions.findOne({ userId })
       .populate('branch_of_service', 'service_name')
-      .populate('rank', 'rank_name') 
-      .populate('primary_sport', 'sport_name') 
-      .populate('sport_position', 'position_name') 
-      .populate('favorite_hobby1', 'hobbie_name') 
-      .populate('favorite_hobby2', 'hobbie_name') 
+      .populate('rank', 'rank_name')
+      .populate('primary_sport', 'sport_name')
+      .populate('sport_position', 'position_name')
+      .populate('favorite_hobby1', 'hobbie_name')
+      .populate('favorite_hobby2', 'hobbie_name')
       .populate('favorite_middle_school_subject', 'subject_name')
-      .select('-userId -createdAt -updatedAt'); 
+      .select('-userId -createdAt -updatedAt');
 
     if (!registration) {
       return res.status(400).json({
@@ -140,12 +140,12 @@ const getRegistrationQuestions = async (req, res) => {
   }
 };
 const addSupportPeople = async (req, res) => {
-    
+
   try {
     if (typeof req.body.supportPeople === 'string') {
       req.body.supportPeople = JSON.parse(req.body.supportPeople);
     }
-    console.log(typeof(req.body.supportPeople));
+    console.log(typeof (req.body.supportPeople));
     // Validate the request body
     const { error, value } = addSupportPeopleSchema.validate(req.body, {
       abortEarly: false,
@@ -163,7 +163,7 @@ const addSupportPeople = async (req, res) => {
     const { path: filePath, originalname: fileName } = req.file;
 
     const { supportPeople } = value;
-    const userId =  req.user.id;
+    const userId = req.user.id;
     // Fetch the transferablleSkills by its ID
     const transferablleSkills = await TransferableSkills.findOne({ userId })
     if (!transferablleSkills) {
@@ -202,11 +202,11 @@ const addSupportPeople = async (req, res) => {
 
     await transferablleSkills.save();
     const userName = req.user.name;
-    
+
     // Send emails to new support people
     for (const person of uniqueNewSupportPeople) {
       const subject = `${userName} Just Shared Their Transferablle Skills with You!`;
-      
+
       const text = `Hi ${person.full_name},
 
 ${userName} has created their transferablleSkills and wanted to share it with you! Stay connected and support them in their career journey!
@@ -222,7 +222,7 @@ Please find the attached transferablle Skills`;
           fileName
         );
         // Delete the temporary file
-    fs.unlinkSync(filePath);
+        fs.unlinkSync(filePath);
       }
     }
 
@@ -232,11 +232,11 @@ Please find the attached transferablle Skills`;
       data: transferablleSkills,
     });
   } catch (err) {
-      console.error(err);
-      return res.status(500).json({
-          success: false,
-          message: 'Internal Server Error',
-      });
+    console.error(err);
+    return res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+    });
   }
 };
 
@@ -258,7 +258,7 @@ const getAllQuestionOptions = async (req, res) => {
       Hobbie.find().select('hobbie_name'),
       Subject.find().select('subject_name')
     ]);
-
+    console.log(hobbies)
     return res.status(200).json({
       success: true,
       data: {
@@ -280,4 +280,4 @@ const getAllQuestionOptions = async (req, res) => {
   }
 };
 
-export {registrationQuestions, getRegistrationQuestions, getAllQuestionOptions, addSupportPeople} 
+export { registrationQuestions, getRegistrationQuestions, getAllQuestionOptions, addSupportPeople } 
